@@ -1,6 +1,5 @@
 <div class="backdrop" [class.show]="isVisible" (click)="toggleMenu()"></div>
-
-<div [class.open]="isVisible" class="app-mobile-nav">
+<div class="app-mobile-nav" [class.open]="isVisible">
   <header>
     <button
       mat-icon-button
@@ -11,12 +10,5 @@
       <mat-icon>close</mat-icon>
     </button>
   </header>
-  <mat-nav-list>
-    @for (link of list; track link) {
-    <a mat-list-item routerLink="/home" routerLinkActive="active">
-      <mat-icon matListItemIcon>{{ link.icon }}</mat-icon>
-      <span>{{ link.label }}</span>
-    </a>
-    }
-  </mat-nav-list>
+  <app-nav-list></app-nav-list>
 </div>

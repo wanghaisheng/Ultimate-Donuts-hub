@@ -5,6 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { ContainerComponent } from '../container/container.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { MobileNavComponent } from './components/mobile-nav/mobile-nav.component';
+import { NavListComponent } from "./components/nav-list/nav-list.component";
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,8 @@ import { MobileNavComponent } from './components/mobile-nav/mobile-nav.component
     ContainerComponent,
     LogoComponent,
     MobileNavComponent,
-  ],
+    NavListComponent
+],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

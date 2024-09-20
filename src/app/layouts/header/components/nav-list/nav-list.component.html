@@ -1,0 +1,8 @@
+<mat-nav-list [class.desktop]="isDesktop">
+  @for (link of list; track link) {
+  <a mat-list-item routerLink="/home" routerLinkActive="active">
+    <mat-icon *ngIf="!isDesktop" matListItemIcon>{{ link.icon }}</mat-icon>
+    <div class="label">{{ link.label }}</div>
+  </a>
+  }
+</mat-nav-list>

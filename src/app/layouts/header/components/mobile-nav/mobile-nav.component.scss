@@ -19,18 +19,8 @@
     justify-content: flex-end;
   }
 
-  button.close-icon,
-  mat-nav-list {
+  button.close-icon {
     margin: 16px;
-  }
-
-  mat-nav-list {
-    margin-top: 0;
-    padding: 0;
-    height: calc(100vh - 88px);
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
   }
 }
 

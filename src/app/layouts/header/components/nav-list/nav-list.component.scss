@@ -1,0 +1,33 @@
+:host {
+  mat-nav-list {
+    margin: 16px;
+    margin-top: 0;
+    padding: 0;
+    height: calc(100vh - 88px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &.desktop {
+      display: none;
+      margin: 0;
+      width: 35rem;
+      height: auto;
+      flex-direction: row;
+      gap: 0.5rem;
+      @media (min-width: 768px) {
+        display: flex;
+      }
+
+      .mat-mdc-list-item {
+        text-align: center;
+        height: var(--mdc-text-button-container-height);
+
+        .label {
+          color: #00dddd;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

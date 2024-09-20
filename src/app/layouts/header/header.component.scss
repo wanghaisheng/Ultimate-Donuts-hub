@@ -1,5 +1,7 @@
 mat-toolbar {
   background-color: #004f4f;
+  box-sizing: content-box;
+  padding: 0.3rem 0;
 
   .menu-icon {
     @media (min-width: 768px) {
