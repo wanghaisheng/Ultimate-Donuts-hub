@@ -1,0 +1,22 @@
+<mat-toolbar>
+  <app-container>
+    <app-logo></app-logo>
+    <span class="example-spacer"></span>
+    <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="menu-icon"
+      aria-label="Example icon-button with menu icon"
+      (click)="toggleMobileNavMenu()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <app-mobile-nav></app-mobile-nav>
+  </app-container>
+</mat-toolbar>
