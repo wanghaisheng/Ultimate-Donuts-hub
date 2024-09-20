@@ -4,21 +4,27 @@
     <span class="example-spacer"></span>
     <app-nav-list [isDesktop]="true"></app-nav-list>
     <span class="example-spacer"></span>
-    <button
-      mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-    >
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button
-      mat-icon-button
-      class="menu-icon"
-      aria-label="Example icon-button with menu icon"
-      (click)="toggleMobileNavMenu()"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
-    <app-mobile-nav></app-mobile-nav>
+    <div class="buttons-container">
+      <button
+        mat-icon-button
+        class="example-icon shopping_bag-icon"
+        aria-label="Example icon-button with shopping bag icon"
+      >
+        <mat-icon fontSet="material-symbols-outlined">shopping_bag</mat-icon>
+      </button>
+      <button mat-stroked-button>
+        <mat-icon fontSet="material-symbols-outlined">account_circle</mat-icon>
+        Sign in
+      </button>
+      <button
+        mat-icon-button
+        class="menu-icon"
+        aria-label="Example icon-button with menu icon"
+        (click)="toggleMobileNavMenu()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
   </app-container>
 </mat-toolbar>
+<app-mobile-nav></app-mobile-nav>
