@@ -1,6 +1,18 @@
-mat-toolbar {
+:host {
+  display: block;
+  width: 100%;
+  height: 56px;
+  position: fixed;
+  top: 0;
+  padding: 0.3rem 0;
   background-color: #004f4f;
-  margin: 0.3rem 0;
+  @media (min-width: 600px) {
+    height: 64px;
+  }
+}
+
+mat-toolbar {
+  background-color: transparent;
 
   .example-spacer {
     flex: 1 1 auto;
@@ -24,4 +36,19 @@ mat-toolbar {
   .mat-mdc-outlined-button:not(:disabled) {
     color: #00dddd;
   }
+}
+
+// nav behavior on scroll
+app-container {
+  transition: all 0.3s ease;
+}
+
+app-container.black {
+  background-color: var(--mat-app-background-color);
+  height: 100%;
+  padding: 0.5rem 1.5rem;
+  scale: 1.02;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
 }
