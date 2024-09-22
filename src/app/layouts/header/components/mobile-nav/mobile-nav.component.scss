@@ -4,7 +4,7 @@
   right: -70vw;
   width: 70vw;
   transition: right 0.3s ease;
-  background-color: var(--mat-app-background-color);
+  background-color: var(--clr-bg-black);
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   z-index: 101;
   &.open {

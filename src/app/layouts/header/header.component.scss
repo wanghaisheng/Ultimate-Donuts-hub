@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   padding: 0.3rem 0;
-  background-color: #004f4f;
+  background-color: var(--clr-bg-green);
   @media (min-width: 600px) {
     height: 64px;
   }
@@ -30,11 +30,11 @@ mat-toolbar {
   }
 
   .mat-icon {
-    color: #00dddd;
+    color: var(--clr-txt-cyan);
   }
 
   .mat-mdc-outlined-button:not(:disabled) {
-    color: #00dddd;
+    color: var(--clr-txt-cyan);
   }
 }
 
@@ -44,7 +44,7 @@ app-container {
 }
 
 app-container.black {
-  background-color: var(--mat-app-background-color);
+  background-color: var(--clr-bg-black);
   height: 100%;
   padding: 0.5rem 1.5rem;
   scale: 1.02;

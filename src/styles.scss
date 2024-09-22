@@ -1,3 +1,11 @@
+:root {
+  --clr-bg-black: #101414;
+  --clr-bg-green: #004f4f;
+  --clr-txt-main: #e0e3e2;
+  --clr-txt-cyan: #00dddd;
+  --clr-hd-cyan: #00fbfb;
+}
+
 html,
 body {
   height: 100%;
@@ -6,9 +14,9 @@ body {
 body {
   margin: 0;
   font-family: "Quicksand", system-ui;
-  // background-color: var(--mat-app-background-color);
-  background-color: #004f4f;
-  color: var(--mat-app-text-color);
+  // background-color: var(--clr-bg-black);
+  background-color: var(--clr-bg-green);
+  color: var(--clr-txt-main);
 }
 
 h1,
@@ -18,11 +26,11 @@ h4,
 h5,
 h6 {
   font-family: "Fredoka", system-ui;
-  color: #00fbfb;
+  color: var(--clr-hd-cyan);
 }
 
 a {
-  color: #00dddd;
+  color: var(--clr-txt-cyan);
   text-decoration: none;
 }
 
