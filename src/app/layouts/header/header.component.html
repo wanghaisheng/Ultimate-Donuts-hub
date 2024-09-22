@@ -4,27 +4,9 @@
     <span class="example-spacer"></span>
     <app-nav-list [isDesktop]="true"></app-nav-list>
     <span class="example-spacer"></span>
-    <div class="buttons-container">
-      <button
-        mat-icon-button
-        class="example-icon shopping_bag-icon"
-        aria-label="Example icon-button with shopping bag icon"
-      >
-        <mat-icon fontSet="material-symbols-outlined">shopping_bag</mat-icon>
-      </button>
-      <button mat-stroked-button>
-        <mat-icon fontSet="material-symbols-outlined">account_circle</mat-icon>
-        Sign in
-      </button>
-      <button
-        mat-icon-button
-        class="menu-icon"
-        aria-label="Example icon-button with menu icon"
-        (click)="toggleMobileNavMenu()"
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
+    <app-header-buttons
+      (toggleMobileMenu)="onToggleMobileMenu()"
+    ></app-header-buttons>
   </app-container>
 </mat-toolbar>
 <app-mobile-nav></app-mobile-nav>

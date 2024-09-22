@@ -1,0 +1,18 @@
+:host {
+  display: flex;
+  gap: 0.5rem;
+
+  .menu-icon {
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .mat-icon {
+    color: var(--clr-txt-cyan);
+  }
+
+  .mat-mdc-outlined-button:not(:disabled) {
+    color: var(--clr-txt-cyan);
+  }
+}
