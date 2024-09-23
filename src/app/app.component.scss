@@ -1,14 +1,9 @@
-app-container {
-  background: rgb(153, 146, 51);
-  flex-direction: column;
-  padding-top: 65.59px;
-  @media (min-width: 600px) {
-    padding-top: 73.59px;
+:host {
+  .main {
+    min-height: 100vh;
+    padding-top: 65.59px;
+    @media (min-width: 600px) {
+      padding-top: 73.59px;
+    }
   }
 }
-
-// Important
-// padding-top: 65.59px;
-// @media (min-width: 600px) {
-//   padding-top: 73.59px;
-// }
