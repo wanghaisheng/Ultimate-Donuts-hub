@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="#004F4F">
+  <path d="M0 100V0h1000v4L0 100z" />
+  <path d="M0 100V0h1000v24L0 100z" opacity=".5" />
+  <path d="M0 100V0h1000v44L0 100z" opacity=".4" />
+  <path d="M0 100V0h1000v64L0 100z" opacity=".4" />
+  <path d="M0 100V0h1000v84L0 100z" opacity=".2" />
+</svg>
+<app-container>
+  <div class="top">
+    <div class="item" *ngFor="let item of items">
+      <div class="item-content">
+        <p class="item-title">{{ item.title }}</p>
+        <div class="item-row" *ngFor="let row of item.rows">
+          {{ row }}
+        </div>
+        <a
+          class="item-row"
+          *ngFor="let link of item.links"
+          [href]="link.href"
+          target="_blank"
+        >
+          {{ link.label }}
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div>&copy; 2024 All rights reserved</div>
+    <div>
+      Made with 🍩 by
+      <a href="https://www.linkedin.com/in/shaher88223/" target="_blank">
+        Shaher Ashraf
+      </a>
+    </div>
+  </div>
+</app-container>
