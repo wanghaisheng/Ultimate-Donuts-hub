@@ -1,4 +1,6 @@
 :host {
+  margin-left: 1rem;
+
   mat-nav-list {
     margin: 16px;
     margin-top: 0;
@@ -11,11 +13,11 @@
     &.desktop {
       display: none;
       margin: 0;
-      width: 35rem;
+      min-width: 35rem;
       height: auto;
       flex-direction: row;
       gap: 0.5rem;
-      @media (min-width: 768px) {
+      @media (min-width: 1024px) {
         display: flex;
       }
 
