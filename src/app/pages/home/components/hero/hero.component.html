@@ -1,0 +1,30 @@
+<app-container>
+  <div class="hero-text">
+    <h1 class="hero-text-headline">
+      Discover Our Delicious<br />
+      Donuts Today!
+    </h1>
+    <p class="hero-text-desc">
+      Our donuts are perfect for any occasion, whether you are grabbing a quick
+      breakfast on the go or ordering a dozen for a special event.
+    </p>
+    <button mat-raised-button class="hero-text-cta">
+      Order Now
+      <mat-icon fontSet="material-symbols-outlined">local_mall</mat-icon>
+    </button>
+  </div>
+  <div class="hero-image">
+    <div class="hero-image-container">
+      <img
+        *ngFor="let image of images"
+        [src]="image.src"
+        loading="lazy"
+        [width]="image.width"
+        [alt]="image.alt"
+        [class]="image.class"
+        [@breath]="{ value: animationRunningState, params: image.params }"
+        (@breath.done)="toggleAnimation()"
+      />
+    </div>
+  </div>
+</app-container>

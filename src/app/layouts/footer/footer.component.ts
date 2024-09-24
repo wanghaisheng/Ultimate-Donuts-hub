@@ -21,7 +21,7 @@ export class FooterComponent {
     },
     {
       title: 'Contact',
-      rows: ['Info@mysite.com', '123-456-7890'],
+      rows: ['Info@donuts.com', '123-456-7890'],
     },
     {
       title: 'Follow Us',
