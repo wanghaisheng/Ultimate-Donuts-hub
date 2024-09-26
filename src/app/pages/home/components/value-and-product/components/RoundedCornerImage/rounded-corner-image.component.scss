@@ -1,0 +1,15 @@
+:host {
+  display: block;
+
+  img {
+    width: 380px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 2rem;
+    box-shadow: var(--shadow-2xl);
+    @media (min-width: 1024px) {
+      width: 400px;
+      height: 400px;
+    }
+  }
+}
