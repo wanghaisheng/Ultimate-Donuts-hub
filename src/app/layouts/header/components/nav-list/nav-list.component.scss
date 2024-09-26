@@ -10,6 +10,20 @@
     flex-direction: column;
     gap: 0.5rem;
 
+    a.mat-mdc-list-item {
+      .label {
+        font-weight: 500;
+      }
+
+      &.active {
+        background-color: var(--clr-bg-list-item-active);
+        mat-icon,
+        .label {
+          color: var(--clr-txt-list-item-active);
+        }
+      }
+    }
+
     &.desktop {
       display: none;
       margin: 0;
@@ -21,14 +35,9 @@
         display: flex;
       }
 
-      .mat-mdc-list-item {
+      a.mat-mdc-list-item {
         text-align: center;
-        height: var(--mdc-text-button-container-height);
-
-        .label {
-          color: var(--clr-txt-cyan);
-          font-weight: 500;
-        }
+        height: var(--btn-height);
       }
     }
   }

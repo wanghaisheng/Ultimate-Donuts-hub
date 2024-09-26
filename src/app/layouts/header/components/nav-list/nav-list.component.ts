@@ -15,9 +15,9 @@ export class NavListComponent {
   @Input() isDesktop!: boolean;
 
   list = [
-    { label: 'Home', icon: 'home' },
-    { label: 'Donuts', icon: 'cookie' },
-    { label: 'About', icon: 'bookmark_manager' },
-    { label: 'Contact', icon: 'contact_page' },
+    { label: 'Home', path: '', icon: 'home' },
+    { label: 'Donuts', path: '/donuts', icon: 'cookie' },
+    { label: 'About', path: '/about', icon: 'bookmark_manager' },
+    { label: 'Contact', path: '/contact', icon: 'contact_page' },
   ];
 }

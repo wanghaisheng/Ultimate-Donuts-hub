@@ -4,8 +4,17 @@
   --clr-txt-main: #e0e3e2;
   --clr-txt-cyan: #00dddd;
   --clr-hd-cyan: #00fbfb;
+  --clr-bg-rose: #ff99cc;
+  --clr-bg-card: #005c5c;
+  --clr-bg-card-hover: #007474;
+  --clr-bg-card-gradient: linear-gradient(135deg, #005c5c, #004f4f);
+  --clr-bg-card-gradient-hover: linear-gradient(135deg, #007474, #00fbfb);
+  --clr-bg-list-item-active: #00dddd26;
+  --clr-txt-list-item-active: #5effff;
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --border: 1px solid #3f4948;
+  --btn-height: var(--mdc-text-button-container-height);
 }
 
 html,
