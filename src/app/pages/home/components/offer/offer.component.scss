@@ -1,0 +1,48 @@
+:host {
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
+  position: relative;
+  padding: 4rem 0;
+
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  app-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    justify-content: center;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2rem;
+
+      &-badge {
+        background-color: var(--clr-txt-main);
+        color: var(--clr-bg-black);
+        padding: 0.3rem 1rem;
+        border-radius: 1.5rem;
+        font-weight: 700;
+      }
+
+      &-title {
+        font-size: 2.8rem;
+        @media (min-width: 1024px) {
+          max-width: 70%;
+        }
+      }
+
+      &-cta {
+        padding: 1.2rem 3rem;
+      }
+    }
+  }
+}
