@@ -15,22 +15,22 @@ export class FeaturesComponent {
     {
       title: 'Fastest Delivery',
       desc: 'Get your donuts delivered hot and fresh.',
-      img: 'fastest-delivery',
+      img: 'assets/images/fastest-delivery.svg',
     },
     {
       title: 'Best Quality',
       desc: 'Experience the melt-in-your-mouth goodness of our donuts.',
-      img: 'best-quality',
+      img: 'assets/images/best-quality.svg',
     },
     {
       title: 'Delicious Taste',
       desc: 'Satisfy your sweet cravings with our irresistibly delicious donuts.',
-      img: 'delicious-taste',
+      img: 'assets/images/delicious-taste.svg',
     },
     {
       title: 'Best Ingredients',
       desc: 'Our donuts are made with the finest and freshest ingredients.',
-      img: 'best-ingredients',
+      img: 'assets/images/best-ingredients.svg',
     },
   ];
 }

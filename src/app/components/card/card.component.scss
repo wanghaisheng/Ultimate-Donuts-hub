@@ -10,7 +10,7 @@ mat-card {
   color: var(--clr-txt-main);
   background-color: var(--clr-bg-card);
   box-shadow: var(--shadow-2xl);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
   &:hover {
     color: var(--clr-txt-cyan);
     background-color: var(--clr-bg-card-hover);
@@ -20,9 +20,23 @@ mat-card {
     .img-container {
       scale: 1.1;
     }
+    mat-card-actions {
+      visibility: visible;
+    }
   }
   &.full-card {
-    min-height: 400px;
+    min-width: 320px;
+    height: 400px;
+    
+    .img-container {
+      .circle {
+        display: none;
+      }
+      img {
+        width: 180px;
+        height: 170px;
+      }
+    }
   }
 }
 
@@ -47,7 +61,7 @@ mat-card-content {
     width: 110px;
     height: 110px;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
 
     .circle {
       width: 100%;
@@ -86,5 +100,7 @@ mat-card-footer {
 
   mat-card-actions {
     justify-content: center;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
   }
 }

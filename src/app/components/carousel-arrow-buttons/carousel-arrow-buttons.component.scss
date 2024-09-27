@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  gap: 0.5rem;
+
+  .arrow {
+    border: var(--border);
+    box-shadow: var(--shadow-md);
+    &:hover {
+      svg {
+        fill: var(--clr-hd-cyan);
+      }
+    }
+
+    svg {
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  .arrow-left {
+    svg {
+      margin-left: -0.2rem;
+    }
+  }
+
+  .arrow-right {
+    svg {
+      margin-right: -0.2rem;
+    }
+  }
+}

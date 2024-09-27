@@ -11,7 +11,7 @@
   <mat-card-content>
     <div class="img-container">
       <div class="circle"></div>
-      <img mat-card-image src="assets/images/{{ card.img }}.svg" />
+      <img mat-card-image [src]="card.img" />
     </div>
     <div class="text-container">
       <mat-card-title>{{ card.title }}</mat-card-title>
@@ -20,7 +20,7 @@
   </mat-card-content>
   <mat-card-footer *ngIf="showFooter">
     <mat-card-actions>
-      <button mat-raised-button class="hero-text-cta">
+      <button mat-raised-button class="cta">
         Add to Cart
         <mat-icon fontSet="material-symbols-outlined"
           >add_shopping_cart</mat-icon

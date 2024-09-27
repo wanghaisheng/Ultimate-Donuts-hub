@@ -1,0 +1,17 @@
+<app-container>
+  <header class="header">
+    <h1 class="title">Hot Deals</h1>
+    <app-carousel-arrow-buttons [owlCar]="owlCar"></app-carousel-arrow-buttons>
+  </header>
+  <owl-carousel-o [options]="customOptions" #owlCar>
+    <ng-container *ngFor="let card of cards">
+      <ng-template carouselSlide [id]="card.id">
+        <app-card
+          [card]="card"
+          [showHeader]="true"
+          [showFooter]="true"
+        ></app-card>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</app-container>

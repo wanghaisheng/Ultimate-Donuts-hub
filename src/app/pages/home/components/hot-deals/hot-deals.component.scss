@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 4rem 0;
+
+  app-container {
+    display: block;
+
+    app-card {
+      mat-card {
+        width: 200px;
+      }
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 2.5rem 3rem;
+    }
+  }
+}
