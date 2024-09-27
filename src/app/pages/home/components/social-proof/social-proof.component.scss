@@ -1,0 +1,64 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 4rem 0;
+
+  app-container {
+    display: block;
+    text-align: center;
+
+    .title {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+
+    .desc {
+      margin: 2rem auto 4rem;
+    }
+
+    app-carousel-arrow-buttons {
+      justify-content: center;
+      margin-top: 4rem;
+    }
+
+    mat-card {
+      width: 275px;
+      height: 275px;
+      margin: 0 0.5rem;
+      display: flex;
+      justify-content: space-around;
+      gap: 1rem;
+      color: var(--clr-bg-black);
+      background-color: var(--clr-txt-main);
+
+      mat-card-header {
+        color: goldenrod;
+      }
+
+      mat-card-content {
+        font-size: 0.8rem;
+      }
+
+      mat-card-footer {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 1rem;
+
+        h4 {
+          font-weight: 600;
+          color: var(--clr-bg-black);
+        }
+
+        img {
+          width: 42px;
+          height: 42px;
+          object-fit: cover;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ContainerComponent } from '../../../../components/container/container.component';
 import { MatCardModule } from '@angular/material/card';
 import { NgFor } from '@angular/common';
-
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { CardComponent } from '../../../../components/card/card.component';
 import { MatIconModule } from '@angular/material/icon';

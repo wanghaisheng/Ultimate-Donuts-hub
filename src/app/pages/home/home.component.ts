@@ -5,11 +5,12 @@ import { FeaturesComponent } from './components/features/features.component';
 import { ValueAndProductComponent } from "./components/value-and-product/value-and-product.component";
 import { HotDealsComponent } from "./components/hot-deals/hot-deals.component";
 import { OfferComponent } from "./components/offer/offer.component";
+import { SocialProofComponent } from "./components/social-proof/social-proof.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ContainerComponent, HeroComponent, FeaturesComponent, ValueAndProductComponent, HotDealsComponent, OfferComponent],
+  imports: [ContainerComponent, HeroComponent, FeaturesComponent, ValueAndProductComponent, HotDealsComponent, OfferComponent, SocialProofComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

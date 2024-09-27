@@ -1,0 +1,28 @@
+<app-container>
+  <h1 class="title">Donut Lovers Speak Out</h1>
+  <p class="desc">Hear What They Have to Say</p>
+  <owl-carousel-o [options]="customOptions" #owlCar>
+    <ng-container *ngFor="let card of cards">
+      <ng-template carouselSlide [id]="card.id">
+        <mat-card appearance="outlined">
+          <mat-card-header>
+            <mat-icon *ngFor="let star of getStars(card.rating).stars">
+              star
+            </mat-icon>
+            <mat-icon *ngIf="getStars(card.rating).halfStar">
+              star_half
+            </mat-icon>
+          </mat-card-header>
+          <mat-card-content>
+            {{ card.desc }}
+          </mat-card-content>
+          <mat-card-footer>
+            <img mat-card-avatar [src]="card.avatar" />
+            <h4>{{ card.name }}</h4>
+          </mat-card-footer>
+        </mat-card>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+  <app-carousel-arrow-buttons [owlCar]="owlCar"></app-carousel-arrow-buttons>
+</app-container>
