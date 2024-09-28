@@ -1,0 +1,94 @@
+<app-container>
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <form class="form" #form="ngForm">
+        <!-- Name -->
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Name"
+            type="text"
+            name="name"
+            required
+            minlength="5"
+            ngModel
+            [ngModelOptions]="{ updateOn: 'blur' }"
+            #name="ngModel"
+          />
+        </mat-form-field>
+        @if (name.invalid && (name.touched || name.dirty)) {
+        <mat-error *ngIf="name.errors?.['required']">
+          Name is required.
+        </mat-error>
+        <mat-error *ngIf="name.errors?.['minlength']">
+          Name must be at least
+          {{name.errors?.['minlength'].requiredLength}} characters long.
+        </mat-error>
+        }
+        <!-- Email -->
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Email"
+            [formControl]="email"
+            (blur)="updateErrorMessage()"
+            required
+            ngModel
+          />
+          @if (email.invalid) {
+          <mat-error>{{ errorMessage() }}</mat-error>
+          }
+        </mat-form-field>
+        <!-- Password -->
+        <mat-form-field appearance="outline">
+          <input
+            matInput
+            placeholder="Password"
+            type="password"
+            name="password"
+            required
+            minlength="8"
+            ngModel
+            [ngModelOptions]="{ updateOn: 'blur' }"
+            #password="ngModel"
+          />
+        </mat-form-field>
+        @if (password.invalid && (password.touched || password.dirty)) {
+        <mat-error *ngIf="password.errors?.['required']">
+          Password is required.
+        </mat-error>
+        <mat-error *ngIf="password.errors?.['minlength']">
+          Password must be at least
+          {{password.errors?.['minlength'].requiredLength}} characters long.
+        </mat-error>
+        }
+        <button
+          mat-button
+          type="submit"
+          [disabled]="form.invalid"
+          (click)="handleSignUp(form)"
+        >
+          Signup
+        </button>
+        <button
+          mat-button
+          type="submit"
+          [disabled]="form.invalid"
+          (click)="handleSignIn(form)"
+        >
+          Sign In
+        </button>
+      </form>
+      <p class="question">
+        <ng-container *ngIf="true">
+          Already have an account?
+          <a routerLink="/sign-in">Sign In</a>
+        </ng-container>
+        <ng-container *ngIf="true">
+          Don't have an account?
+          <a routerLink="/signup">Sign Up</a>
+        </ng-container>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</app-container>

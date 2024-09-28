@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
+  padding: 4rem 0;
+}
+
+button {
+  background: var(--clr-bg-card-gradient-hover);
+  color: red;
+  //color: var(--clr-txt-main);
+}
