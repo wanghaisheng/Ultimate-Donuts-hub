@@ -1,7 +1,7 @@
 :host {
   display: flex;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 50vh;
   padding: 4rem 0;
 }
 
@@ -22,14 +22,22 @@ app-container {
       max-width: 50%;
     }
 
+    &-question {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--clr-txt-cyan);
+    }
+
     &-title {
       font-size: 3rem;
     }
 
-    &-text-1,
-    &-text-2 {
+    &-text {
       font-size: 1.1rem;
       line-height: 1.6rem;
+      @media (min-width: 1024px) {
+        max-width: 80%;
+      }
     }
   }
 
@@ -37,6 +45,8 @@ app-container {
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     max-width: 90%;
+    width: 400px;
+    height: 440px;
     @media (min-width: 1024px) {
       max-width: 40%;
     }
