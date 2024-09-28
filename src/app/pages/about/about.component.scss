@@ -1,0 +1,45 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 4rem 0;
+}
+
+app-container {
+  gap: 2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .content {
+    @media (min-width: 768px) {
+      max-width: 70%;
+    }
+    @media (min-width: 1024px) {
+      max-width: 50%;
+    }
+
+    &-title {
+      font-size: 3rem;
+    }
+
+    &-text-1,
+    &-text-2 {
+      font-size: 1.1rem;
+      line-height: 1.6rem;
+    }
+  }
+
+  .image {
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    max-width: 90%;
+    @media (min-width: 1024px) {
+      max-width: 40%;
+    }
+  }
+}
