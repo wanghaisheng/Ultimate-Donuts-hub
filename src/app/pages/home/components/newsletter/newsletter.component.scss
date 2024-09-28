@@ -1,0 +1,68 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  padding: 4rem 0;
+
+  app-container {
+    justify-content: center;
+  }
+
+  mat-card {
+    width: 100%;
+    background: no-repeat center 100% url("/assets/images/newsletter.png");
+    object-fit: cover;
+    @media (min-width: 1024px) {
+      background: no-repeat center/100% url("/assets/images/newsletter.png");
+    }
+  }
+
+  mat-card-content {
+    padding: 5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  mat-card-title {
+    font-weight: 600;
+    font-size: 2.4rem;
+    line-height: 3rem;
+  }
+
+  mat-card-subtitle {
+    margin: 0 auto;
+    @media (min-width: 1024px) {
+      max-width: 45%;
+    }
+  }
+
+  mat-form-field {
+    width: 90%;
+    margin-top: 1rem;
+    border-radius: 4rem;
+    --mdc-outlined-text-field-container-shape: 28px !important;
+    @media (min-width: 768px) {
+      max-width: 75%;
+    }
+    @media (min-width: 1024px) {
+      max-width: 60%;
+    }
+
+    button {
+      margin-right: 0.5rem;
+      padding: 0 1rem;
+      background: var(--clr-bg-card-gradient-hover);
+      color: var(--clr-txt-main);
+      @media (min-width: 768px) {
+        padding: 0 2rem;
+      }
+      @media (min-width: 1024px) {
+        padding: 0 3rem;
+      }
+    }
+  }
+}

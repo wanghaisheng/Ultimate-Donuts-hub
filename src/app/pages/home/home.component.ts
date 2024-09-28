@@ -6,11 +6,12 @@ import { ValueAndProductComponent } from "./components/value-and-product/value-a
 import { HotDealsComponent } from "./components/hot-deals/hot-deals.component";
 import { OfferComponent } from "./components/offer/offer.component";
 import { SocialProofComponent } from "./components/social-proof/social-proof.component";
+import { NewsletterComponent } from "./components/newsletter/newsletter.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ContainerComponent, HeroComponent, FeaturesComponent, ValueAndProductComponent, HotDealsComponent, OfferComponent, SocialProofComponent],
+  imports: [ContainerComponent, HeroComponent, FeaturesComponent, ValueAndProductComponent, HotDealsComponent, OfferComponent, SocialProofComponent, NewsletterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
