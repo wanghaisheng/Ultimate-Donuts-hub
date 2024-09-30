@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -35,6 +35,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sign-in-up.component.scss',
 })
 export class SignInUpComponent {
+  @Input() signUpForm: boolean = true;
   readonly email = new FormControl('', [Validators.required, Validators.email]);
 
   errorMessage = signal('');
