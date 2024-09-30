@@ -10,10 +10,10 @@ app-container {
 }
 
 mat-card {
-  background: rgba(16, 20, 20, 0.25);
   width: 100%;
   max-width: 450px;
   border: none;
+  box-shadow: var(--shadow-md);
   @media (min-width: 1024px) {
     max-width: 900px;
     overflow: hidden;
