@@ -1,0 +1,42 @@
+.app-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 70vw;
+  transition: right 0.3s ease;
+  background-color: var(--clr-bg-black);
+  box-shadow: var(--shadow-md);
+  z-index: 101;
+  @media (min-width: 768px) {
+    width: 50vw;
+  }
+  @media (min-width: 1024px) {
+    display: none;
+  }
+
+  header {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  button.close-icon {
+    margin: 16px;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  display: none;
+  &.show {
+    display: block;
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+}

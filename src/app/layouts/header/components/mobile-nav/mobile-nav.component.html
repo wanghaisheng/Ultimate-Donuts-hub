@@ -1,14 +1,3 @@
-<div class="backdrop" [class.show]="isVisible" (click)="toggleMenu()"></div>
-<div class="app-mobile-nav" [@drawerState]="isVisible ? 'open' : 'closed'">
-  <header>
-    <button
-      mat-icon-button
-      class="close-icon"
-      aria-label="Example icon-button with close icon"
-      (click)="toggleMenu()"
-    >
-      <mat-icon>close</mat-icon>
-    </button>
-  </header>
+<app-drawer>
   <app-nav-list></app-nav-list>
-</div>
+</app-drawer>

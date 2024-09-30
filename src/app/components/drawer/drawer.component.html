@@ -1,0 +1,9 @@
+<div class="backdrop" [class.show]="isVisible" (click)="toggleDrawer()"></div>
+<div class="app-drawer" [@drawerState]="isVisible ? 'open' : 'closed'">
+  <header>
+    <button mat-icon-button class="close-icon" (click)="toggleDrawer()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </header>
+  <ng-content></ng-content>
+</div>
