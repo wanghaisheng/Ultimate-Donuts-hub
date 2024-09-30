@@ -1,5 +1,5 @@
 <div class="backdrop" [class.show]="isVisible" (click)="toggleMenu()"></div>
-<div class="app-mobile-nav" [class.open]="isVisible">
+<div class="app-mobile-nav" [@drawerState]="isVisible ? 'open' : 'closed'">
   <header>
     <button
       mat-icon-button

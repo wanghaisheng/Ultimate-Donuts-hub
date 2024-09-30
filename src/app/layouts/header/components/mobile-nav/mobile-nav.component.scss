@@ -1,16 +1,16 @@
 .app-mobile-nav {
   position: fixed;
   top: 0;
-  right: -70vw;
+  right: 0;
   width: 70vw;
   transition: right 0.3s ease;
   background-color: var(--clr-bg-black);
   box-shadow: var(--shadow-md);
   z-index: 101;
-  &.open {
-    right: 0;
-  }
   @media (min-width: 768px) {
+    width: 50vw;
+  }
+  @media (min-width: 1024px) {
     display: none;
   }
 
@@ -35,7 +35,7 @@
   display: none;
   &.show {
     display: block;
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       display: none;
     }
   }
