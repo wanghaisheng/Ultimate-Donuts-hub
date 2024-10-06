@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { DrawerService } from '../../../../shared/drawer.service';
 
 @Component({
   selector: 'app-header-buttons',
@@ -10,9 +11,9 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './header-buttons.component.scss',
 })
 export class HeaderButtonsComponent {
-  @Output() toggleMobileMenu = new EventEmitter();
+  constructor(private drawerService: DrawerService) {}
 
-  toggleMenu() {
-    this.toggleMobileMenu.emit();
+  toggleDrawer(activeDrawer: string) {
+    this.drawerService.setActiveDrawer(activeDrawer);
   }
 }

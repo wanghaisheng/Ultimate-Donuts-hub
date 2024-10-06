@@ -1,8 +1,7 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ContainerComponent } from '../../components/container/container.component';
 import { LogoComponent } from './components/logo/logo.component';
-import { MobileNavComponent } from './components/mobile-nav/mobile-nav.component';
 import { NavListComponent } from './components/nav-list/nav-list.component';
 import { HeaderButtonsComponent } from './components/header-buttons/header-buttons.component';
 
@@ -13,7 +12,6 @@ import { HeaderButtonsComponent } from './components/header-buttons/header-butto
     MatToolbarModule,
     ContainerComponent,
     LogoComponent,
-    MobileNavComponent,
     NavListComponent,
     HeaderButtonsComponent,
   ],
@@ -21,12 +19,7 @@ import { HeaderButtonsComponent } from './components/header-buttons/header-butto
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  @ViewChild(MobileNavComponent) mobileNavComponent!: MobileNavComponent;
   scroll = false;
-
-  onToggleMobileMenu() {
-    this.mobileNavComponent.toggleMenu();
-  }
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll(event: Event): void {

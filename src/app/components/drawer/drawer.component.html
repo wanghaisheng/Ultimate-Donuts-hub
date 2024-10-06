@@ -1,9 +1,24 @@
-<div class="backdrop" [class.show]="isVisible" (click)="toggleDrawer()"></div>
-<div class="app-drawer" [@drawerState]="isVisible ? 'open' : 'closed'">
+<div
+  [ngClass]="{ backdrop: isOpen, show: isOpen && isMobileDrawer }"
+  (click)="toggleDrawer()"
+></div>
+<div
+  class="app-drawer"
+  [class.mobile]="isMobileDrawer"
+  [@drawerState]="isOpen ? 'open' : 'closed'"
+>
   <header>
-    <button mat-icon-button class="close-icon" (click)="toggleDrawer()">
+    <button
+      mat-icon-button
+      class="close-icon"
+      *ngIf="isMobileDrawer || isCartDrawer || isWishlistDrawer"
+      (click)="toggleDrawer()"
+    >
       <mat-icon>close</mat-icon>
     </button>
   </header>
-  <ng-content></ng-content>
+  <app-nav-list *ngIf="isMobileDrawer"></app-nav-list>
+  <app-cart-wishlist
+    *ngIf="isCartDrawer || isWishlistDrawer"
+  ></app-cart-wishlist>
 </div>

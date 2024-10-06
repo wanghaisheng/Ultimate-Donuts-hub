@@ -2,6 +2,7 @@
   mat-icon-button
   class="example-icon favorite-icon"
   aria-label="Example icon-button with favorite icon"
+  (click)="toggleDrawer('WISHLIST_DRAWER')"
 >
   <mat-icon fontSet="material-symbols-outlined">favorite</mat-icon>
 </button>
@@ -9,6 +10,7 @@
   mat-icon-button
   class="example-icon shopping_bag-icon"
   aria-label="Example icon-button with shopping bag icon"
+  (click)="toggleDrawer('CART_DRAWER')"
 >
   <mat-icon fontSet="material-symbols-outlined">shopping_bag</mat-icon>
 </button>
@@ -20,7 +22,7 @@
   mat-icon-button
   class="menu-icon"
   aria-label="Example icon-button with menu icon"
-  (click)="toggleMenu()"
+  (click)="toggleDrawer('MOBILE_DRAWER')"
 >
   <mat-icon>menu</mat-icon>
 </button>

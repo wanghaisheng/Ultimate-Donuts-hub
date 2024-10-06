@@ -11,16 +11,19 @@
     width: 50vw;
   }
   @media (min-width: 1024px) {
-    display: none;
+    width: 30vw;
+    &.mobile {
+      display: none;
+    }
   }
 
   header {
     display: flex;
     justify-content: flex-end;
-  }
 
-  button.close-icon {
-    margin: 16px;
+    button.close-icon {
+      margin: 16px;
+    }
   }
 }
 
@@ -32,7 +35,8 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 100;
-  display: none;
+  transition: all 0.3s ease;
+
   &.show {
     display: block;
     @media (min-width: 1024px) {

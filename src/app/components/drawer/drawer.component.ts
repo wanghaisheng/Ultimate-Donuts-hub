@@ -5,14 +5,25 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { DrawerService } from '../../shared/drawer.service';
+import { NgClass, NgIf } from '@angular/common';
+import { NavListComponent } from '../../layouts/header/components/nav-list/nav-list.component';
+import { CartWishlistComponent } from '../cart/cart-wishlist.component';
 
 @Component({
   selector: 'app-drawer',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule],
+  imports: [
+    NgIf,
+    MatButtonModule,
+    MatIconModule,
+    NgClass,
+    NavListComponent,
+    CartWishlistComponent,
+  ],
   templateUrl: './drawer.component.html',
   styleUrl: './drawer.component.scss',
   animations: [
@@ -36,9 +47,30 @@ import { MatIconModule } from '@angular/material/icon';
   ],
 })
 export class DrawerComponent {
-  isVisible = false;
+  isOpen!: boolean;
+  isMobileDrawer!: boolean;
+  isCartDrawer!: boolean;
+  isWishlistDrawer!: boolean;
+
+  constructor(private drawerService: DrawerService) {
+    this.drawerService.isOpen$.subscribe((value) => {
+      this.isOpen = value;
+    });
+    this.drawerService.activeDrawer$.subscribe((activeDrawer) => {
+      this.isCartDrawer = activeDrawer.isCartDrawer;
+      this.isWishlistDrawer = activeDrawer.isWishlistDrawer;
+      this.isMobileDrawer = activeDrawer.isMobileDrawer;
+    });
+  }
 
   toggleDrawer() {
-    this.isVisible = !this.isVisible;
+    this.drawerService.toggleDrawer();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event: Event): void {
+    const width = (event.target as Window).innerWidth;
+    if (this.isMobileDrawer && width >= 1024)
+      this.drawerService.setActiveDrawer(null);
   }
 }

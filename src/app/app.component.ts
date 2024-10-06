@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { SignInUpComponent } from './pages/sign-in-up/sign-in-up.component';
+import { DrawerComponent } from './components/drawer/drawer.component';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ import { SignInUpComponent } from './pages/sign-in-up/sign-in-up.component';
     AboutComponent,
     ContactComponent,
     SignInUpComponent,
+    DrawerComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
