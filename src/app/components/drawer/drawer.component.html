@@ -1,7 +1,4 @@
-<div
-  [ngClass]="{ backdrop: isOpen, show: isOpen && isMobileDrawer }"
-  (click)="toggleDrawer()"
-></div>
+<div [class.backdrop]="isOpen" (click)="toggleDrawer()"></div>
 <div
   class="app-drawer"
   [class.mobile]="isMobileDrawer"

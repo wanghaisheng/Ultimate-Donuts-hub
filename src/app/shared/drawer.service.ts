@@ -25,6 +25,10 @@ export class DrawerService {
     this.isOpen.next(!this.isOpen.value);
   }
 
+  closeDrawer() {
+    this.isOpen.next(false);
+  }
+
   setActiveDrawer(activeDrawer: string | null) {
     this.toggleDrawer();
     this.activeDrawer.next({
