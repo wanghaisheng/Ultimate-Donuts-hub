@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { DrawerService } from '../../shared/drawer.service';
 import { NgIf } from '@angular/common';
 import { NavListComponent } from '../../layouts/header/components/nav-list/nav-list.component';
-import { CartWishlistComponent } from '../cart/cart-wishlist.component';
+import { CartWishlistComponent } from '../cart-wishlist/cart-wishlist.component';
 
 @Component({
   selector: 'app-drawer',

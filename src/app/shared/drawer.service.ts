@@ -23,6 +23,11 @@ export class DrawerService {
 
   toggleDrawer() {
     this.isOpen.next(!this.isOpen.value);
+    if (this.isOpen.value) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   }
 
   closeDrawer() {

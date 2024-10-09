@@ -1,0 +1,38 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <div class="product-img">
+      <img src="{{ product.image }}" alt="{{ product.description }}" />
+    </div>
+    <div class="product-content">
+      <div class="product-content-top">
+        <span class="product-content-top-name">{{ product.name }}</span>
+        <button mat-icon-button>
+          <mat-icon fontSet="material-symbols-outlined">
+            {{
+              (product.isAddedToCart && "remove_shopping_cart") ||
+                (product.isAddedToWishlist && "heart_minus")
+            }}
+          </mat-icon>
+        </button>
+      </div>
+      <div class="product-content-bottom">
+        <div class="product-content-bottom-action">
+          <mat-button-toggle-group
+            name="fontStyle"
+            aria-label="Font Style"
+            *ngIf="product.isAddedToCart"
+            [hideSingleSelectionIndicator]="true"
+          >
+            <mat-button-toggle><mat-icon>remove</mat-icon></mat-button-toggle>
+            <mat-button-toggle>{{ product.quantity }}</mat-button-toggle>
+            <mat-button-toggle><mat-icon>add</mat-icon></mat-button-toggle>
+          </mat-button-toggle-group>
+          <button mat-stroked-button *ngIf="product.isAddedToWishlist">
+            Add to cart
+          </button>
+        </div>
+        <span class="product-content-bottom-price">${{ product.price }}</span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

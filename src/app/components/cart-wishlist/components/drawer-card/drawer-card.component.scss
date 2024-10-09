@@ -1,0 +1,81 @@
+mat-card {
+  margin-bottom: 1rem;
+}
+
+mat-card-content {
+  display: flex;
+  gap: 1rem;
+
+  .product-img {
+    width: 65px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .product-content {
+    width: calc(100% - 81px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &-top,
+    &-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &-top {
+      align-items: flex-start;
+      .mat-mdc-icon-button {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        justify-content: center;
+
+        mat-icon {
+          font-size: 20px;
+        }
+      }
+    }
+
+    &-bottom {
+      &-action {
+        mat-button-toggle-group {
+          height: 30px;
+          ::ng-deep .mat-button-toggle-button {
+            height: 30px;
+            display: flex;
+            align-items: center;
+          }
+          .mat-button-toggle-appearance-standard.mat-button-toggle-checked {
+            color: var(
+              --mat-standard-button-toggle-text-color,
+              var(--mat-app-on-surface)
+            );
+            background-color: var(
+              --mat-standard-button-toggle-background-color
+            );
+          }
+        }
+
+        .mdc-button {
+          height: 30px;
+        }
+      }
+
+      &-price {
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
