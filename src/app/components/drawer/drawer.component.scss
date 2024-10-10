@@ -2,11 +2,14 @@
   position: fixed;
   top: 0;
   right: 0;
-  width: 70vw;
+  width: 100vw;
   transition: right 0.3s ease;
   background-color: var(--clr-bg-black);
   box-shadow: var(--shadow-md);
   z-index: 101;
+  @media (min-width: 480px) {
+    width: 70vw;
+  }
   @media (min-width: 768px) {
     width: 50vw;
   }

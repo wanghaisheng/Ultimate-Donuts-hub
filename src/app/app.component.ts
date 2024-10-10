@@ -8,6 +8,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { SignInUpComponent } from './pages/sign-in-up/sign-in-up.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
+import { CartWishlistComponent } from './pages/cart-wishlist/cart-wishlist.component';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { DrawerComponent } from './components/drawer/drawer.component';
     ContactComponent,
     SignInUpComponent,
     DrawerComponent,
+    CartWishlistComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

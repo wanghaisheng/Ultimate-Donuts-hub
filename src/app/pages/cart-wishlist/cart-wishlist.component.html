@@ -1,0 +1,7 @@
+<app-container>
+  @if (isCart) {
+  <app-table [isCart]="isCart" [donuts]="cartProducts"></app-table>
+  } @if (isWishlist) {
+  <app-table [isWishlist]="isWishlist" [donuts]="wishListProducts"></app-table>
+  }
+</app-container>
