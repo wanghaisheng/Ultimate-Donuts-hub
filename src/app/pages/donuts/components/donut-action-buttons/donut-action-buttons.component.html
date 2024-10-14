@@ -1,0 +1,13 @@
+<button mat-icon-button *ngIf="!donut.isAddedToCart">
+  <mat-icon fontSet="material-symbols-outlined">shopping_cart</mat-icon>
+</button>
+<button mat-icon-button>
+  <mat-icon
+    [fontSet]="!donut.isAddedToWishlist ? 'material-symbols-outlined' : ''"
+  >
+    favorite
+  </mat-icon>
+</button>
+<button mat-icon-button (click)="openDialog('300ms', '300ms')">
+  <mat-icon fontSet="material-symbols-outlined">visibility</mat-icon>
+</button>

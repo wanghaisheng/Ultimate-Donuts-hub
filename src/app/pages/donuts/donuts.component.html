@@ -1,0 +1,62 @@
+<app-container>
+  <div class="donuts-items">
+    <header class="header">
+      <mat-button-toggle-group
+        name="fontStyle"
+        aria-label="Font Style"
+        [hideSingleSelectionIndicator]="true"
+      >
+        <mat-button-toggle
+          [class.mat-button-toggle-checked]="isGridView"
+          (click)="isGridView = true"
+        >
+          <mat-icon fontSet="material-symbols-outlined">grid_view</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle
+          [class.mat-button-toggle-checked]="!isGridView"
+          (click)="isGridView = false"
+        >
+          <mat-icon fontSet="material-symbols-outlined">lists</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Search" required />
+        <mat-icon fontSet="material-symbols-outlined" matSuffix>
+          search
+        </mat-icon>
+      </mat-form-field>
+    </header>
+    <div class="grid" *ngIf="isGridView">
+      <app-donut-card
+        *ngFor="let donut of donuts"
+        [donut]="donut"
+      ></app-donut-card>
+    </div>
+    <div class="stack" *ngIf="!isGridView">
+      <app-donut-full-card
+        *ngFor="let donut of donuts"
+        [donut]="donut"
+      ></app-donut-full-card>
+    </div>
+    <footer>
+      <mat-paginator
+        [length]="100"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </footer>
+  </div>
+  <div class="flavoured">
+    <header class="header">
+      <h2>Flavoured Donuts</h2>
+    </header>
+    <div class="stack">
+      <app-donut-flavoured-card
+        *ngFor="let donut of flavouredDonuts"
+        [donut]="donut"
+      ></app-donut-flavoured-card>
+    </div>
+  </div>
+</app-container>

@@ -1,0 +1,11 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <img [src]="donut.image" [alt]="donut.name" />
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="content">
+      <h4>{{ donut.name }}</h4>
+      <p>${{ donut.price }}</p>
+      <app-donut-action-buttons [donut]="donut"></app-donut-action-buttons>
+    </div>
+  </mat-card-content>
+</mat-card>

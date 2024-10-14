@@ -1,0 +1,25 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <img [src]="donut.image" [alt]="donut.name" />
+    <mat-divider [vertical]="true"></mat-divider>
+    <div class="content">
+      <h3>{{ donut.name }}</h3>
+      <p>${{ donut.price }}</p>
+      <p>{{ donut.description }}</p>
+      <div class="action-buttons">
+        <button mat-stroked-button *ngIf="!donut.isAddedToCart">
+          ADD TO CART
+        </button>
+        <button mat-icon-button>
+          <mat-icon
+            [fontSet]="
+              !donut.isAddedToWishlist ? 'material-symbols-outlined' : ''
+            "
+          >
+            favorite
+          </mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

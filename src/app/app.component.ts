@@ -9,6 +9,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { SignInUpComponent } from './pages/sign-in-up/sign-in-up.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
 import { CartWishlistComponent } from './pages/cart-wishlist/cart-wishlist.component';
+import { DonutsComponent } from "./pages/donuts/donuts.component";
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,8 @@ import { CartWishlistComponent } from './pages/cart-wishlist/cart-wishlist.compo
     SignInUpComponent,
     DrawerComponent,
     CartWishlistComponent,
-  ],
+    DonutsComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
