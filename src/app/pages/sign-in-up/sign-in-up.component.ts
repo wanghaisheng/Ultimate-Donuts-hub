@@ -15,7 +15,8 @@ import { CommonModule, NgIf } from '@angular/common';
 import { merge } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import { SupabaseService } from '../../shared/supabase.service';
+import { AuthService } from '../../shared/auth.service';
+import { DonutService } from '../../shared/donut.service';
 
 @Component({
   selector: 'app-sign-in-up',
@@ -42,7 +43,7 @@ export class SignInUpComponent {
 
   errorMessage = signal('');
 
-  constructor(private auth: SupabaseService) {
+  constructor(private auth: AuthService, private donuts: DonutService) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
@@ -87,6 +88,12 @@ export class SignInUpComponent {
 
   async signOut() {
     const { error } = await this.auth.signOut();
+    console.log('error: ', error);
+  }
+
+  async getDonuts() {
+    const { data, error } = await this.donuts.read();
+    console.log('donuts: ', data);
     console.log('error: ', error);
   }
 
