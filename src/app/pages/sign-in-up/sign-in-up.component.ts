@@ -15,6 +15,7 @@ import { CommonModule, NgIf } from '@angular/common';
 import { merge } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { SupabaseService } from '../../shared/supabase.service';
 
 @Component({
   selector: 'app-sign-in-up',
@@ -40,7 +41,7 @@ export class SignInUpComponent {
 
   errorMessage = signal('');
 
-  constructor() {
+  constructor(private auth: SupabaseService) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
@@ -58,11 +59,27 @@ export class SignInUpComponent {
     }
   }
 
-  handleSignUp(form: NgForm) {
+  async handleSignUp(form: NgForm) {
+    debugger;
     if (form.valid) {
+      const { data, error } = await this.auth.signUp(
+        this.email.value!,
+        form.form.value.password,
+        form.form.value.name
+      );
+      console.log('data: ', data);
+      console.log('error: ', error);
     } else {
       form.form.markAllAsTouched();
     }
+  }
+
+  async getUser() {
+    const { session, error } = await this.auth.getUser();
+    //if(session) // session.user.user_metadata.email
+    // session.user.user_metadata.name
+    console.log('session: ', session);
+    console.log('error: ', error);
   }
 
   handleSignIn(form: NgForm) {

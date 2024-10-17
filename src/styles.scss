@@ -58,3 +58,27 @@ button {
     justify-content: center;
   }
 }
+
+.mat-mdc-snack-bar-container {
+  .mat-mdc-snackbar-surface {
+    --mdc-snackbar-container-color: var(--clr-bg-black);
+  }
+  .mdc-snackbar__label {
+    font-weight: bold !important;
+  }
+
+  &.snackbar {
+    &-error {
+      .mat-mdc-snackbar-surface,
+      .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+        color: var(--clr-bg-rose);
+      }
+    }
+    &-success {
+      .mat-mdc-snackbar-surface,
+      .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+        color: var(--clr-txt-cyan);
+      }
+    }
+  }
+}

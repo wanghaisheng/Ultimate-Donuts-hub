@@ -9,7 +9,8 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { SignInUpComponent } from './pages/sign-in-up/sign-in-up.component';
 import { DrawerComponent } from './components/drawer/drawer.component';
 import { CartWishlistComponent } from './pages/cart-wishlist/cart-wishlist.component';
-import { DonutsComponent } from "./pages/donuts/donuts.component";
+import { DonutsComponent } from './pages/donuts/donuts.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +26,9 @@ import { DonutsComponent } from "./pages/donuts/donuts.component";
     SignInUpComponent,
     DrawerComponent,
     CartWishlistComponent,
-    DonutsComponent
-],
+    DonutsComponent,
+    MatSnackBarModule,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
