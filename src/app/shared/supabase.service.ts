@@ -25,6 +25,19 @@ export class SupabaseService {
     return { data, error: this.handleAuthError(error) };
   }
 
+  async signIn(email: string, password: string) {
+    const { data, error } = await this.supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    return { data, error: this.handleAuthError(error) };
+  }
+
+  async signOut() {
+    const { error } = await this.supabase.auth.signOut();
+    return { error: this.handleAuthError(error) };
+  }
+
   async getUser() {
     const {
       data: { session },

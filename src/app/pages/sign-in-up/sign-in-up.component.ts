@@ -36,6 +36,7 @@ import { SupabaseService } from '../../shared/supabase.service';
   styleUrl: './sign-in-up.component.scss',
 })
 export class SignInUpComponent {
+  sessionUser: { name: string; email: string } = { name: '', email: '' };
   @Input() signUpForm: boolean = true;
   readonly email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -78,12 +79,25 @@ export class SignInUpComponent {
     const { session, error } = await this.auth.getUser();
     //if(session) // session.user.user_metadata.email
     // session.user.user_metadata.name
+    this.sessionUser.name = session?.user.user_metadata['name'];
+    this.sessionUser.email = session?.user.user_metadata['email'];
     console.log('session: ', session);
     console.log('error: ', error);
   }
 
-  handleSignIn(form: NgForm) {
+  async signOut() {
+    const { error } = await this.auth.signOut();
+    console.log('error: ', error);
+  }
+
+  async handleSignIn(form: NgForm) {
     if (form.valid) {
+      const { data, error } = await this.auth.signIn(
+        this.email.value!,
+        form.form.value.password
+      );
+      console.log('data: ', data);
+      console.log('error: ', error);
     } else {
       form.form.markAllAsTouched();
     }

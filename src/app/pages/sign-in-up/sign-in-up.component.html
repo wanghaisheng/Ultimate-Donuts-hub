@@ -1,5 +1,11 @@
 <app-container>
   <mat-card appearance="outlined">
+    <ng-container>
+      <h1>name: {{ sessionUser.name }}</h1>
+      <h1>email: {{ sessionUser.email }}</h1>
+      <button (click)="getUser()">get user</button>
+      <button (click)="signOut()">sign out</button>
+    </ng-container>
     <mat-card-content>
       <form class="form" #form="ngForm">
         <!-- Name -->
@@ -103,6 +109,5 @@
         <img src="assets/images/pink-donuts-milk-food.jpg" />
       </div>
     </mat-card-content>
-    <button (click)="getUser()">get user</button>
   </mat-card>
 </app-container>
