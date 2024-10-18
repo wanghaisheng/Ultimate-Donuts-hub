@@ -4,11 +4,18 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { breath } from './animations';
 import { NgFor } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [NgFor, MatButtonModule, MatIconModule, ContainerComponent],
+  imports: [
+    NgFor,
+    RouterModule,
+    MatButtonModule,
+    MatIconModule,
+    ContainerComponent,
+  ],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
   animations: [breath],

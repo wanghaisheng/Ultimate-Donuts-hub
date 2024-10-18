@@ -37,13 +37,17 @@
     </p>
     <div class="buttons">
       <button mat-stroked-button>PROCEED TO CHECKOUT</button>
-      <button mat-raised-button>VIEW CART</button>
+      <button mat-raised-button (click)="navigateToPage(true)">
+        VIEW CART
+      </button>
     </div>
   </ng-container>
   <ng-container *ngIf="isWishlistDrawer">
     <div class="buttons">
       <button mat-stroked-button>ADD ALL TO CART</button>
-      <button mat-raised-button>VIEW WISHLIST</button>
+      <button mat-raised-button (click)="navigateToPage(false)">
+        VIEW WISHLIST
+      </button>
     </div>
   </ng-container>
 </footer>

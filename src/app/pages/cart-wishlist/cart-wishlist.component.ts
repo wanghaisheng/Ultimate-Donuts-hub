@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ContainerComponent } from '../../components/container/container.component';
 import { TableComponent } from './components/table/table.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-wishlist',
@@ -9,9 +10,9 @@ import { TableComponent } from './components/table/table.component';
   templateUrl: './cart-wishlist.component.html',
   styleUrl: './cart-wishlist.component.scss',
 })
-export class CartWishlistComponent {
+export class CartWishlistComponent implements OnInit {
   isCart = false;
-  isWishlist = true;
+  isWishlist = false;
   wishListProducts = [
     {
       name: 'Chocolate Glazed Donut',
@@ -235,4 +236,12 @@ export class CartWishlistComponent {
       image: 'assets/images/thumbs/peanut_butter_jelly_d.png',
     },
   ];
+  path = '';
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.isCart = this.router.url == '/shopping-cart' ? true : false;
+    this.isWishlist = this.router.url == '/wishlist' ? true : false;
+  }
 }

@@ -8,9 +8,11 @@
         {{ showList ? list.title : default.title }}
       </h1>
       <p class="content-desc" *ngIf="!showList">{{ default.desc }}</p>
-      <button mat-stroked-button class="content-cta" *ngIf="!showList">
-        Read More
-      </button>
+      <a routerLink="/about">
+        <button mat-stroked-button class="content-cta" *ngIf="!showList">
+          Read More
+        </button>
+      </a>
       <mat-list *ngIf="showList">
         <mat-list-item *ngFor="let item of list.items">
           <mat-icon matListItemIcon>check</mat-icon>

@@ -14,7 +14,7 @@ import {
 import { CommonModule, NgIf } from '@angular/common';
 import { merge } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '../../shared/auth.service';
 import { DonutService } from '../../shared/donut.service';
 
@@ -22,7 +22,6 @@ import { DonutService } from '../../shared/donut.service';
   selector: 'app-sign-in-up',
   standalone: true,
   imports: [
-    RouterLink,
     NgIf,
     CommonModule,
     FormsModule,

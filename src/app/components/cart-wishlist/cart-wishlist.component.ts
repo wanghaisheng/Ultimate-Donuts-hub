@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cart-wishlist',
@@ -13,6 +14,7 @@ import { MatBadgeModule } from '@angular/material/badge';
   imports: [
     NgIf,
     NgFor,
+    RouterModule,
     MatIconModule,
     MatDividerModule,
     MatButtonModule,
@@ -249,7 +251,7 @@ export class CartWishlistComponent {
     },
   ];
 
-  constructor(private drawerService: DrawerService) {
+  constructor(private drawerService: DrawerService, private router: Router) {
     this.drawerService.activeDrawer$.subscribe((activeDrawer) => {
       this.isCartDrawer = activeDrawer.isCartDrawer;
       this.isWishlistDrawer = activeDrawer.isWishlistDrawer;
@@ -260,5 +262,10 @@ export class CartWishlistComponent {
     return this.cartProducts.reduce((total, item) => {
       return total + item.price * item.quantity;
     }, 0);
+  }
+
+  navigateToPage(flag: boolean) {
+    this.router.navigate([`${flag ? '/shopping-cart' : 'wishlist'}`]);
+    this.drawerService.toggleDrawer();
   }
 }

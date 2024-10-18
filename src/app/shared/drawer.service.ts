@@ -32,6 +32,7 @@ export class DrawerService {
 
   closeDrawer() {
     this.isOpen.next(false);
+    document.body.style.overflow = 'auto';
   }
 
   setActiveDrawer(activeDrawer: string | null) {

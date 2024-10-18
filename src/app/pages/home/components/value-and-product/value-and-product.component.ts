@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgFor, NgIf } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-value-and-product',
@@ -12,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     NgIf,
     NgFor,
+    RouterModule,
     ContainerComponent,
     RoundedCornerImageComponent,
     MatButtonModule,
