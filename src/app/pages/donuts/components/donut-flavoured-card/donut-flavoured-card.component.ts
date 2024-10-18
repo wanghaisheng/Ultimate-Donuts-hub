@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { DonutDialogComponent } from '../donut-dialog/donut-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
 import { DonutActionButtonsComponent } from '../donut-action-buttons/donut-action-buttons.component';
 
 @Component({

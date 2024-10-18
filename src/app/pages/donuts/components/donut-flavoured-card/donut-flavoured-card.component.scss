@@ -13,7 +13,7 @@ mat-card {
     &:hover {
       app-donut-action-buttons {
         height: auto;
-        transform: translateY(0);
+        scale: 1;
         opacity: 1;
       }
     }
@@ -39,10 +39,10 @@ mat-card {
     }
 
     app-donut-action-buttons {
-      transform: translateY(3rem);
       height: 0;
+      scale: 0;
       opacity: 0;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease;
     }
   }
 }
