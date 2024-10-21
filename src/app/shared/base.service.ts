@@ -14,12 +14,17 @@ export class BaseService {
 
   constructor(protected snackBar: MatSnackBar) {}
 
-  protected handleAuthError(error: AuthError | PostgrestError | null) {
+  protected handleAuthError(
+    error: AuthError | PostgrestError | null,
+    consoleErrorMessage: string,
+    returnValue: {}
+  ) {
     if (error) {
+      console.error(consoleErrorMessage, error);
       this.openSnackBar(error.message, 'Close', 'snackbar-error');
-      return error.message;
+      return returnValue;
     }
-    return null;
+    return;
   }
 
   private openSnackBar(message: string, action: string, panelClass: string) {

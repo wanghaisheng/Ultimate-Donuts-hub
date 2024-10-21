@@ -10,9 +10,32 @@ export class DonutService extends BaseService {
     super(snackBar);
   }
 
-  async read() {
-    const { data, error } = await this.supabase.from('donuts').select('*');
-    this.handleAuthError(error);
-    return { data, error };
+  async read(payload: PayloadType) {
+    let query = this.supabase.from('donuts').select('*', { count: 'exact' });
+    if (payload.pagination) {
+      const { page, pageSize } = payload.pagination;
+      const from = (page - 1) * pageSize;
+      const to = from + pageSize - 1;
+      query = query.range(from, to);
+    }
+    if (payload.filter) {
+      query = query.eq(payload.filter, true);
+    }
+    if (payload.search) {
+      const { field, value } = payload.search;
+      query = query.ilike(field, `%${value}%`);
+    }
+    const { data, error, count } = await query;
+    this.handleAuthError(error, 'Error fetching donuts:', {
+      data: [],
+      total: 0,
+    });
+    return { data, total: count || 0 };
   }
 }
+
+type PayloadType = {
+  pagination?: { page: number; pageSize: number };
+  filter?: string;
+  search?: { field: string; value: string };
+};

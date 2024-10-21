@@ -20,29 +20,53 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
       <mat-form-field appearance="outline">
-        <input matInput placeholder="Search" required />
+        <input
+          matInput
+          placeholder="Search"
+          required
+          #nameInput
+          (input)="searchDonuts(nameInput.value)"
+        />
         <mat-icon fontSet="material-symbols-outlined" matSuffix>
           search
         </mat-icon>
       </mat-form-field>
     </header>
+    <ngx-skeleton-loader
+      class="grid"
+      style="justify-items: center"
+      *ngIf="!donuts?.length"
+      [count]="pageSize"
+      [theme]="{
+        padding: '1rem',
+        width: '255px',
+        height: '320px',
+        marginBottom: '1.5rem',
+        borderRadius: '14px',
+        backgroundColor: 'var(--clr-bg-black)',
+      }"
+      animation="pulse"
+    />
     <div class="grid" *ngIf="isGridView">
       <app-donut-card
-        *ngFor="let donut of donuts"
+        *ngFor="let donut of donuts; let i = index"
         [donut]="donut"
+        [@fadeIn]="{ value: '', params: { delay: (i + 1) * 300 } }"
       ></app-donut-card>
     </div>
     <div class="stack" *ngIf="!isGridView">
       <app-donut-full-card
-        *ngFor="let donut of donuts"
+        *ngFor="let donut of donuts; let i = index"
         [donut]="donut"
+        [@fadeIn]="{ value: '', params: { delay: (i + 1) * 300 } }"
       ></app-donut-full-card>
     </div>
     <footer>
       <mat-paginator
-        [length]="100"
-        [pageSize]="10"
-        [pageSizeOptions]="[5, 10, 25, 100]"
+        [length]="totalItems"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[5, 10, 20, 40]"
+        (page)="onPageChange($event)"
         aria-label="Select page"
       >
       </mat-paginator>
@@ -53,9 +77,21 @@
       <h2>Flavoured Donuts</h2>
     </header>
     <div class="stack">
+      <ngx-skeleton-loader
+        *ngIf="!flavouredDonuts?.length"
+        count="5"
+        [theme]="{
+          padding: '3rem 0',
+          marginBottom: '1.5rem',
+          borderRadius: '14px',
+          backgroundColor: 'var(--clr-bg-black)',
+        }"
+        animation="pulse"
+      />
       <app-donut-flavoured-card
-        *ngFor="let donut of flavouredDonuts"
+        *ngFor="let donut of flavouredDonuts; let i = index"
         [donut]="donut"
+        [@fadeIn]="{ value: '', params: { delay: (i + 1) * 300 } }"
       ></app-donut-flavoured-card>
     </div>
   </div>
