@@ -25,24 +25,41 @@ import { CarouselArrowButtonsComponent } from '../../../../components/carousel-a
   styleUrl: './hot-deals.component.scss',
 })
 export class HotDealsComponent {
-  cards = [
+  donuts = [
     {
-      id: '1',
-      title: 'Cinnamon Bliss',
-      desc: 'A classic glazed donut with a cinnamon sugar',
-      img: 'assets/images/card-donut-1.png',
+      id: 25,
+      created_at: '2024-10-21 17:54:13.26476+00',
+      name: 'Cinnamon Bliss',
+      description: 'A classic glazed donut with a cinnamon sugar',
+      price: 3.5,
+      image: 'assets/images/card-donut-1.png',
+      isFlavoured: null,
+      isAddedToCart: false,
+      isAddedToWishlist: false,
     },
     {
-      id: '2',
-      title: 'Chocolate Dream',
-      desc: 'An Oven-baked doughnut, perfectly dipped in a glossy chocolate glaze that melts in your mouth.',
-      img: 'assets/images/card-donut-2.png',
+      id: 26,
+      created_at: '2024-10-21 17:55:43.779304+00',
+      name: 'Chocolate Dream',
+      description:
+        'An Oven-baked doughnut, perfectly dipped in a glossy chocolate glaze that melts in your mouth.',
+      price: 2.75,
+      image: 'assets/images/card-donut-2.png',
+      isFlavoured: null,
+      isAddedToCart: false,
+      isAddedToWishlist: false,
     },
     {
-      id: '3',
-      title: 'Berry Burst',
-      desc: 'A fruity donut filled with a fresh berry jam and topped with a tangy glaze',
-      img: 'assets/images/card-donut-3.png',
+      id: 27,
+      created_at: '2024-10-21 17:56:20.636531+00',
+      name: 'Berry Burst',
+      description:
+        'A fruity donut filled with a fresh berry jam and topped with a tangy glaze',
+      price: 2.9,
+      image: 'assets/images/card-donut-3.png',
+      isFlavoured: null,
+      isAddedToCart: false,
+      isAddedToWishlist: false,
     },
   ];
 

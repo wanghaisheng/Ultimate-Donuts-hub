@@ -1,33 +1,47 @@
 <h2 class="title">
   <ng-container *ngIf="isCartDrawer">
-    <mat-icon [matBadge]="cartProducts.length" [matBadgeSize]="'large'">
+    <mat-icon [matBadge]="cartDonuts.length" [matBadgeSize]="'large'">
       shopping_cart
     </mat-icon>
     Your Cart
   </ng-container>
   <ng-container *ngIf="isWishlistDrawer">
-    <mat-icon [matBadge]="wishListProducts.length" [matBadgeSize]="'large'">
+    <mat-icon [matBadge]="wishlistDonuts.length" [matBadgeSize]="'large'">
       favorite
     </mat-icon>
     Your Wishlist
   </ng-container>
 </h2>
-<div class="cards-container">
+<div
+  class="cards-container"
+  [class.empty]="
+    (isCartDrawer && !cartDonuts.length) ||
+    (isWishlistDrawer && !wishlistDonuts.length)
+  "
+>
   <ng-container *ngIf="isCartDrawer">
     <app-drawer-card
-      *ngFor="let product of cartProducts"
-      [product]="product"
+      *ngFor="let donut of cartDonuts"
+      [donut]="donut"
     ></app-drawer-card>
+    <div class="empty-content" *ngIf="!cartDonuts.length">
+      <img src="assets/images/cart.webp" />
+      <h3>Your shopping cart is empty!</h3>
+    </div>
   </ng-container>
   <ng-container *ngIf="isWishlistDrawer">
     <app-drawer-card
-      *ngFor="let product of wishListProducts"
-      [product]="product"
+      *ngFor="let donut of wishlistDonuts"
+      [donut]="donut"
     ></app-drawer-card>
+    <div class="empty-content" *ngIf="!wishlistDonuts.length">
+      <img src="assets/images/wishlist.webp" />
+      <h3>Your wishlist is empty!</h3>
+    </div>
   </ng-container>
 </div>
 <footer class="footer">
-  <ng-container *ngIf="isCartDrawer">
+  <ng-container *ngIf="isCartDrawer && cartDonuts.length">
     <p class="total">
       <span>Total</span><span>${{ calculateCartTotal().toFixed(2) }}</span>
     </p>
@@ -37,17 +51,28 @@
     </p>
     <div class="buttons">
       <button mat-stroked-button>PROCEED TO CHECKOUT</button>
-      <button mat-raised-button (click)="navigateToPage(true)">
+      <button mat-raised-button (click)="navigateToPage('shopping-cart')">
         VIEW CART
       </button>
     </div>
   </ng-container>
-  <ng-container *ngIf="isWishlistDrawer">
+  <ng-container *ngIf="isWishlistDrawer && wishlistDonuts.length">
     <div class="buttons">
       <button mat-stroked-button>ADD ALL TO CART</button>
-      <button mat-raised-button (click)="navigateToPage(false)">
+      <button mat-raised-button (click)="navigateToPage('wishlist')">
         VIEW WISHLIST
       </button>
     </div>
   </ng-container>
+  <div
+    class="buttons"
+    *ngIf="
+      (isCartDrawer && !cartDonuts.length) ||
+      (isWishlistDrawer && !wishlistDonuts.length)
+    "
+  >
+    <button mat-stroked-button (click)="navigateToPage('donuts')">
+      START SHOPPING
+    </button>
+  </div>
 </footer>

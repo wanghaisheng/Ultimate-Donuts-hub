@@ -1,5 +1,12 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { AfterViewInit, Component, Input, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDividerModule } from '@angular/material/divider';
@@ -7,12 +14,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { RouterModule } from '@angular/router';
+import { CartWishlistService } from '../../../../shared/services/cart-wishlist.service';
+import { Donut } from '../../../../shared/types/donut.model';
 
 @Component({
   selector: 'app-table',
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     NgIf,
     MatPaginatorModule,
     MatTableModule,
@@ -25,20 +36,27 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements AfterViewInit, OnChanges {
   @Input() isCart?: boolean;
   @Input() isWishlist?: boolean;
-  @Input() donuts: DonutsType[] = [];
+  @Input() donuts: Donut[] = [];
 
   displayedColumns: string[] = [];
-  dataSource = new MatTableDataSource<DonutsType>([]);
+  dataSource = new MatTableDataSource<Donut>([]);
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  constructor(private cartWishlistService: CartWishlistService) {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['donuts'] && changes['donuts'].currentValue) {
+      this.dataSource.data = changes['donuts'].currentValue;
+    }
+  }
+
   ngAfterViewInit() {
     this.displayedColumns = this.getDisplayedColumns();
-    this.dataSource.data = this.donuts;
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -51,17 +69,11 @@ export class TableComponent implements AfterViewInit {
 
   calculateCartTotal() {
     return this.donuts.reduce((total, item) => {
-      return total + item.price * item.quantity;
+      return total + item.price * (item.quantity || 1);
     }, 0);
   }
-}
 
-export interface DonutsType {
-  name: string;
-  description: string;
-  price: number;
-  quantity: number;
-  isAddedToWishlist: boolean;
-  isAddedToCart: boolean;
-  image: string;
+  async updateWishlist(donut: Donut) {
+    await this.cartWishlistService.updateWishlist(donut);
+  }
 }

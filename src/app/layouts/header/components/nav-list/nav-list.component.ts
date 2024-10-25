@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { RouterModule, RouterLinkActive } from '@angular/router';
-import { DrawerService } from '../../../../shared/drawer.service';
+import { DrawerService } from '../../../../shared/services/drawer.service';
 
 @Component({
   selector: 'app-nav-list',

@@ -1,7 +1,6 @@
 :host {
   display: block;
   width: 100%;
-  box-shadow: var(--shadow-2xl);
 }
 
 header.table-header {
@@ -82,9 +81,18 @@ mat-paginator {
   border-top: none;
   background-color: transparent;
   padding-top: 0.5rem;
+  box-shadow: var(--shadow-2xl);
   @media (min-width: 768px) {
     padding-top: initial;
   }
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 22.5vh auto;
 }
 
 // columns styles

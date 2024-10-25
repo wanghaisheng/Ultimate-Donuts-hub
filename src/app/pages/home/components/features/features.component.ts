@@ -13,24 +13,26 @@ import { NgFor } from '@angular/common';
 export class FeaturesComponent {
   cards = [
     {
-      title: 'Fastest Delivery',
-      desc: 'Get your donuts delivered hot and fresh.',
-      img: 'assets/images/fastest-delivery.svg',
+      name: 'Fastest Delivery',
+      description: 'Get your donuts delivered hot and fresh.',
+      image: 'assets/images/fastest-delivery.svg',
     },
     {
-      title: 'Best Quality',
-      desc: 'Experience the melt-in-your-mouth goodness of our donuts.',
-      img: 'assets/images/best-quality.svg',
+      name: 'Best Quality',
+      description: 'Experience the melt-in-your-mouth goodness of our donuts.',
+      image: 'assets/images/best-quality.svg',
     },
     {
-      title: 'Delicious Taste',
-      desc: 'Satisfy your sweet cravings with our irresistibly delicious donuts.',
-      img: 'assets/images/delicious-taste.svg',
+      name: 'Delicious Taste',
+      description:
+        'Satisfy your sweet cravings with our irresistibly delicious donuts.',
+      image: 'assets/images/delicious-taste.svg',
     },
     {
-      title: 'Best Ingredients',
-      desc: 'Our donuts are made with the finest and freshest ingredients.',
-      img: 'assets/images/best-ingredients.svg',
+      name: 'Best Ingredients',
+      description:
+        'Our donuts are made with the finest and freshest ingredients.',
+      image: 'assets/images/best-ingredients.svg',
     },
   ];
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { DrawerService } from '../../../../shared/drawer.service';
+import { DrawerService } from '../../../../shared/services/drawer.service';
 
 @Component({
   selector: 'app-header-buttons',

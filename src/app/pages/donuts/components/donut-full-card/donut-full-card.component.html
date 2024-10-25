@@ -10,7 +10,7 @@
         <button mat-stroked-button *ngIf="!donut.isAddedToCart">
           ADD TO CART
         </button>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="updateWishlist(donut)">
           <mat-icon
             [fontSet]="
               !donut.isAddedToWishlist ? 'material-symbols-outlined' : ''

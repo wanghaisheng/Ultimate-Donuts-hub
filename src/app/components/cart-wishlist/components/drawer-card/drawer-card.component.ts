@@ -4,6 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { CartWishlistService } from '../../../../shared/services/cart-wishlist.service';
+import { Donut } from '../../../../shared/types/donut.model';
 
 @Component({
   selector: 'app-drawer-card',
@@ -19,13 +21,11 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './drawer-card.component.scss',
 })
 export class DrawerCardComponent {
-  @Input() product!: {
-    name: string;
-    description: string;
-    price: number;
-    quantity: number;
-    isAddedToWishlist: boolean;
-    isAddedToCart: boolean;
-    image: string;
-  };
+  @Input() donut!: Donut;
+
+  constructor(private cartWishlistService: CartWishlistService) {}
+
+  async updateWishlist(donut: Donut) {
+    await this.cartWishlistService.updateWishlist(donut);
+  }
 }

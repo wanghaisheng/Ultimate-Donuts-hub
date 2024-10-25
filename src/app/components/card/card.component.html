@@ -4,18 +4,23 @@
       mat-icon-button
       class="example-icon favorite-icon"
       aria-label="Example icon-button with favorite icon"
+      (click)="updateWishlist(donut)"
     >
-      <mat-icon fontSet="material-symbols-outlined">favorite</mat-icon>
+      <mat-icon
+        [fontSet]="!donut.isAddedToWishlist ? 'material-symbols-outlined' : ''"
+      >
+        favorite
+      </mat-icon>
     </button>
   </mat-card-header>
   <mat-card-content>
     <div class="img-container">
       <div class="circle"></div>
-      <img mat-card-image [src]="card.img" />
+      <img mat-card-image [src]="donut.image" />
     </div>
     <div class="text-container">
-      <mat-card-title>{{ card.title }}</mat-card-title>
-      <p class="desc">{{ card.desc }}</p>
+      <mat-card-title>{{ donut.name }}</mat-card-title>
+      <p class="desc">{{ donut.description }}</p>
     </div>
   </mat-card-content>
   <mat-card-footer *ngIf="showFooter">

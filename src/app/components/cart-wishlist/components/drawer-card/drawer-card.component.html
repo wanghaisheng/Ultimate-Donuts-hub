@@ -1,18 +1,22 @@
 <mat-card appearance="outlined">
   <mat-card-content>
     <div class="product-img">
-      <img src="{{ product.image }}" alt="{{ product.description }}" />
+      <img src="{{ donut.image }}" alt="{{ donut.description }}" />
     </div>
     <div class="product-content">
       <div class="product-content-top">
-        <span class="product-content-top-name">{{ product.name }}</span>
-        <button mat-icon-button>
+        <span class="product-content-top-name">{{ donut.name }}</span>
+        <button mat-icon-button *ngIf="donut.isAddedToCart">
           <mat-icon fontSet="material-symbols-outlined">
-            {{
-              (product.isAddedToCart && "remove_shopping_cart") ||
-                (product.isAddedToWishlist && "heart_minus")
-            }}
+            remove_shopping_cart
           </mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          *ngIf="donut.isAddedToWishlist"
+          (click)="updateWishlist(donut)"
+        >
+          <mat-icon fontSet="material-symbols-outlined">heart_minus</mat-icon>
         </button>
       </div>
       <div class="product-content-bottom">
@@ -20,18 +24,18 @@
           <mat-button-toggle-group
             name="fontStyle"
             aria-label="Font Style"
-            *ngIf="product.isAddedToCart"
+            *ngIf="donut.isAddedToCart"
             [hideSingleSelectionIndicator]="true"
           >
             <mat-button-toggle><mat-icon>remove</mat-icon></mat-button-toggle>
-            <mat-button-toggle>{{ product.quantity }}</mat-button-toggle>
+            <mat-button-toggle>{{ donut.quantity }}</mat-button-toggle>
             <mat-button-toggle><mat-icon>add</mat-icon></mat-button-toggle>
           </mat-button-toggle-group>
-          <button mat-stroked-button *ngIf="product.isAddedToWishlist">
+          <button mat-stroked-button *ngIf="donut.isAddedToWishlist">
             Add to cart
           </button>
         </div>
-        <span class="product-content-bottom-price">${{ product.price }}</span>
+        <span class="product-content-bottom-price">${{ donut.price }}</span>
       </div>
     </div>
   </mat-card-content>

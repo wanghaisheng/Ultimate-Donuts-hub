@@ -4,10 +4,10 @@
     <app-carousel-arrow-buttons [owlCar]="owlCar"></app-carousel-arrow-buttons>
   </header>
   <owl-carousel-o [options]="customOptions" #owlCar>
-    <ng-container *ngFor="let card of cards">
-      <ng-template carouselSlide [id]="card.id">
+    <ng-container *ngFor="let donut of donuts">
+      <ng-template carouselSlide [id]="donut.id.toString()">
         <app-card
-          [card]="card"
+          [donut]="donut"
           [showHeader]="true"
           [showFooter]="true"
         ></app-card>

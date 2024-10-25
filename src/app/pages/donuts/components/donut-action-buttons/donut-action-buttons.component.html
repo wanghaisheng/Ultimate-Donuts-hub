@@ -1,7 +1,7 @@
 <button mat-icon-button *ngIf="!donut.isAddedToCart">
   <mat-icon fontSet="material-symbols-outlined">shopping_cart</mat-icon>
 </button>
-<button mat-icon-button>
+<button mat-icon-button (click)="updateWishlist(donut)">
   <mat-icon
     [fontSet]="!donut.isAddedToWishlist ? 'material-symbols-outlined' : ''"
   >

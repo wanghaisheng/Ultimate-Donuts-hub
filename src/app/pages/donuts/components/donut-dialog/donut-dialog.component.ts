@@ -1,6 +1,11 @@
 import { Component, inject, model } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DonutFullCardComponent } from '../donut-full-card/donut-full-card.component';
+import { Donut } from '../../../../shared/types/donut.model';
+
+interface DialogData {
+  donut: Donut;
+}
 
 @Component({
   selector: 'app-donut-dialog',
@@ -17,16 +22,4 @@ export class DonutDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-}
-
-export interface DialogData {
-  donut: {
-    name: string;
-    description: string;
-    price: number;
-    quantity: number;
-    isAddedToWishlist: boolean;
-    isAddedToCart: boolean;
-    image: string;
-  };
 }

@@ -9,9 +9,10 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { DonutFullCardComponent } from './components/donut-full-card/donut-full-card.component';
 import { DonutFlavouredCardComponent } from './components/donut-flavoured-card/donut-flavoured-card.component';
-import { DonutService } from '../../shared/donut.service';
+import { DonutService } from '../../shared/services/donut.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { Donut } from '../../shared/types/donut.model';
 
 @Component({
   selector: 'app-donuts',
@@ -51,8 +52,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 })
 export class DonutsComponent implements OnInit {
   isGridView = true;
-  donuts: any[] | null = [];
-  flavouredDonuts: any[] | null = [];
+  donuts: Donut[] | null = [];
+  flavouredDonuts: Donut[] | null = [];
   currentPage = 0;
   pageSize = 10;
   totalItems = 0;

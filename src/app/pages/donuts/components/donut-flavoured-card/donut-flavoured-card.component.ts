@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { DonutActionButtonsComponent } from '../donut-action-buttons/donut-action-buttons.component';
+import { Donut } from '../../../../shared/types/donut.model';
 
 @Component({
   selector: 'app-donut-flavoured-card',
@@ -22,13 +23,5 @@ import { DonutActionButtonsComponent } from '../donut-action-buttons/donut-actio
   styleUrl: './donut-flavoured-card.component.scss',
 })
 export class DonutFlavouredCardComponent {
-  @Input() donut!: {
-    name: string;
-    description: string;
-    price: number;
-    quantity: number;
-    isAddedToWishlist: boolean;
-    isAddedToCart: boolean;
-    image: string;
-  };
+  @Input() donut!: Donut;
 }
