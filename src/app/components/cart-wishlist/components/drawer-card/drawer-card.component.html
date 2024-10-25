@@ -6,7 +6,11 @@
     <div class="product-content">
       <div class="product-content-top">
         <span class="product-content-top-name">{{ donut.name }}</span>
-        <button mat-icon-button *ngIf="donut.isAddedToCart">
+        <button
+          mat-icon-button
+          *ngIf="donut.isAddedToCart"
+          (click)="updateCart(donut)"
+        >
           <mat-icon fontSet="material-symbols-outlined">
             remove_shopping_cart
           </mat-icon>
@@ -27,11 +31,19 @@
             *ngIf="donut.isAddedToCart"
             [hideSingleSelectionIndicator]="true"
           >
-            <mat-button-toggle><mat-icon>remove</mat-icon></mat-button-toggle>
+            <mat-button-toggle (click)="updateDonutQuantity(donut, false)">
+              <mat-icon>remove</mat-icon>
+            </mat-button-toggle>
             <mat-button-toggle>{{ donut.quantity }}</mat-button-toggle>
-            <mat-button-toggle><mat-icon>add</mat-icon></mat-button-toggle>
+            <mat-button-toggle (click)="updateDonutQuantity(donut, true)">
+              <mat-icon>add</mat-icon>
+            </mat-button-toggle>
           </mat-button-toggle-group>
-          <button mat-stroked-button *ngIf="donut.isAddedToWishlist">
+          <button
+            mat-stroked-button
+            *ngIf="donut.isAddedToWishlist"
+            (click)="updateCart(donut)"
+          >
             Add to cart
           </button>
         </div>

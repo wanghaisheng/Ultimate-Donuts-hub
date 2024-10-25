@@ -1,6 +1,7 @@
 <mat-card appearance="outlined" [class.full-card]="fullCard">
   <mat-card-header *ngIf="showHeader">
     <button
+      *ngIf="!donut.isAddedToCart"
       mat-icon-button
       class="example-icon favorite-icon"
       aria-label="Example icon-button with favorite icon"
@@ -25,10 +26,12 @@
   </mat-card-content>
   <mat-card-footer *ngIf="showFooter">
     <mat-card-actions>
-      <button mat-raised-button class="cta">
-        Add to Cart
+      <button mat-raised-button class="cta" (click)="updateCart(donut)">
+        {{ donut.isAddedToCart ? "Remove from Cart" : "Add to Cart" }}
         <mat-icon fontSet="material-symbols-outlined">
-          add_shopping_cart
+          {{
+            donut.isAddedToCart ? "remove_shopping_cart" : "add_shopping_cart"
+          }}
         </mat-icon>
       </button>
     </mat-card-actions>

@@ -43,6 +43,7 @@ export class CartWishlistComponent {
     });
     this.cartWishlistService.data$.subscribe((value) => {
       this.wishlistDonuts = value.wishlistDonuts;
+      this.cartDonuts = value.cartDonuts;
     });
   }
 
@@ -55,5 +56,11 @@ export class CartWishlistComponent {
   navigateToPage(page: string) {
     this.router.navigate([page]);
     this.drawerService.toggleDrawer();
+  }
+
+  addAllToCart() {
+    this.wishlistDonuts.forEach(async (donut) => {
+      await this.cartWishlistService.updateCart(donut);
+    });
   }
 }

@@ -7,10 +7,14 @@
       <p>${{ donut.price }}</p>
       <p>{{ donut.description }}</p>
       <div class="action-buttons">
-        <button mat-stroked-button *ngIf="!donut.isAddedToCart">
-          ADD TO CART
+        <button mat-stroked-button (click)="updateCart(donut)">
+          {{ donut.isAddedToCart ? "REMOVE FROM CART" : "ADD TO CART" }}
         </button>
-        <button mat-icon-button (click)="updateWishlist(donut)">
+        <button
+          mat-icon-button
+          *ngIf="!donut.isAddedToCart"
+          (click)="updateWishlist(donut)"
+        >
           <mat-icon
             [fontSet]="
               !donut.isAddedToWishlist ? 'material-symbols-outlined' : ''

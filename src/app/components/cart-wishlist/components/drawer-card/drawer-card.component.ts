@@ -28,4 +28,12 @@ export class DrawerCardComponent {
   async updateWishlist(donut: Donut) {
     await this.cartWishlistService.updateWishlist(donut);
   }
+
+  async updateCart(donut: Donut) {
+    await this.cartWishlistService.updateCart(donut);
+  }
+
+  async updateDonutQuantity(donut: Donut, flag: boolean) {
+    await this.cartWishlistService.updateDonutQuantity(donut, flag);
+  }
 }

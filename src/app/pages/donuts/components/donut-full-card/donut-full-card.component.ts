@@ -31,14 +31,22 @@ export class DonutFullCardComponent implements OnInit {
 
   updateCardState() {
     this.cartWishlistService.data$.subscribe((value) => {
-      const foundDonut = value.wishlistDonuts.find(
+      const foundInWishlist = value.wishlistDonuts.find(
         (d: { id: number }) => d.id == this.donut.id
       );
-      this.donut.isAddedToWishlist = foundDonut ? true : false;
+      this.donut.isAddedToWishlist = foundInWishlist ? true : false;
+      const foundInCart = value.cartDonuts.find(
+        (d: { id: number }) => d.id == this.donut.id
+      );
+      this.donut.isAddedToCart = foundInCart ? true : false;
     });
   }
 
   async updateWishlist(donut: Donut) {
     await this.cartWishlistService.updateWishlist(donut);
+  }
+
+  async updateCart(donut: Donut) {
+    await this.cartWishlistService.updateCart(donut);
   }
 }
