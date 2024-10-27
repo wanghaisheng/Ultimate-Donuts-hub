@@ -1,12 +1,5 @@
 <app-container>
   <mat-card appearance="outlined">
-    <ng-container>
-      <h1>name: {{ sessionUser.name }}</h1>
-      <h1>email: {{ sessionUser.email }}</h1>
-      <button (click)="getUser()">get user</button>
-      <button (click)="signOut()">sign out</button>
-      <button (click)="getDonuts()">Get Donuts</button>
-    </ng-container>
     <mat-card-content>
       <form class="form" #form="ngForm">
         <!-- Name -->
@@ -84,7 +77,7 @@
           (click)="handleSignUp(form)"
           *ngIf="signUpForm"
         >
-          Signup
+          Sign Up
         </button>
         <button
           mat-button
@@ -102,7 +95,7 @@
           </ng-container>
           <ng-container *ngIf="!signUpForm">
             Don't have an account?
-            <a routerLink="/signup">Sign Up</a>
+            <a routerLink="/sign-up">Sign Up</a>
           </ng-container>
         </p>
       </form>

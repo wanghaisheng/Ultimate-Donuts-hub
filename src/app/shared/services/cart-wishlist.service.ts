@@ -3,11 +3,13 @@ import { BaseService } from './base.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
 import { Donut } from '../types/donut.model';
+import { AuthService } from './auth.service';
 
 interface CartWishlistType {
   donuts: Donut[];
   cartDonuts: Donut[];
   wishlistDonuts: Donut[];
+  isUserExist: boolean;
 }
 
 @Injectable({
@@ -18,12 +20,16 @@ export class CartWishlistService extends BaseService {
     donuts: [],
     cartDonuts: [],
     wishlistDonuts: [],
+    isUserExist: false,
   });
 
   data$ = this.data.asObservable();
 
-  constructor(snackBar: MatSnackBar) {
+  constructor(private authService: AuthService, snackBar: MatSnackBar) {
     super(snackBar);
+    this.authService.data$.subscribe((data) => {
+      this.data.value.isUserExist = data.isUserExist;
+    });
     this.setWishlist();
     this.setCart();
   }
@@ -31,7 +37,7 @@ export class CartWishlistService extends BaseService {
   setCart(
     cartDonuts: Donut[] = JSON.parse(localStorage.getItem('cartDonuts') || '[]')
   ) {
-    if (!this.isUserExist) {
+    if (!this.data.value.isUserExist) {
       localStorage.setItem('cartDonuts', JSON.stringify(cartDonuts));
       this.data.next({
         ...this.data.value,
@@ -41,7 +47,7 @@ export class CartWishlistService extends BaseService {
   }
 
   async updateCart(donut: Donut) {
-    if (!this.isUserExist) {
+    if (!this.data.value.isUserExist) {
       const foundDonut = this.data.value.cartDonuts.find(
         (d: { id: number }) => d.id == donut.id
       );
@@ -50,7 +56,7 @@ export class CartWishlistService extends BaseService {
   }
 
   async addToCart(donut: Donut) {
-    if (!this.isUserExist) {
+    if (!this.data.value.isUserExist) {
       this.deleteFromWishlist(donut);
       donut.isAddedToCart = true;
       donut.quantity = 1;
@@ -65,7 +71,7 @@ export class CartWishlistService extends BaseService {
   }
 
   async deleteFromCart(donut: Donut) {
-    if (!this.isUserExist) {
+    if (!this.data.value.isUserExist) {
       this.deleteFromWishlist(donut);
       donut.isAddedToCart = false;
       const cartDonuts = this.data.value.cartDonuts.filter(
@@ -81,7 +87,7 @@ export class CartWishlistService extends BaseService {
   }
 
   async updateDonutQuantity(donut: Donut, flag: boolean) {
-    if (!this.isUserExist) {
+    if (!this.data.value.isUserExist) {
       flag ? (donut.quantity += 1) : (donut.quantity -= 1);
       if (donut.quantity < 1) donut.quantity = 1;
       const cartDonuts = this.data.value.cartDonuts.map((d) =>
@@ -96,7 +102,7 @@ export class CartWishlistService extends BaseService {
       localStorage.getItem('wishlistDonuts') || '[]'
     )
   ) {
-    if (!this.isUserExist) {
+    if (!this.data.value.isUserExist) {
       localStorage.setItem('wishlistDonuts', JSON.stringify(wishlistDonuts));
       this.data.next({
         ...this.data.value,
@@ -106,7 +112,7 @@ export class CartWishlistService extends BaseService {
   }
 
   async updateWishlist(donut: Donut) {
-    if (!this.isUserExist) {
+    if (!this.data.value.isUserExist) {
       const foundDonut = this.data.value.wishlistDonuts.find(
         (d: { id: number }) => d.id == donut.id
       );
@@ -115,7 +121,7 @@ export class CartWishlistService extends BaseService {
   }
 
   async addToWishlist(donut: Donut) {
-    if (!this.isUserExist) {
+    if (!this.data.value.isUserExist) {
       donut.isAddedToWishlist = true;
       donut.isAddedToCart = false;
       const wishlistDonuts = [...this.data.value.wishlistDonuts, donut];
@@ -129,7 +135,7 @@ export class CartWishlistService extends BaseService {
   }
 
   async deleteFromWishlist(donut: Donut) {
-    if (!this.isUserExist) {
+    if (!this.data.value.isUserExist) {
       donut.isAddedToWishlist = false;
       donut.isAddedToCart = false;
       const wishlistDonuts = this.data.value.wishlistDonuts.filter(

@@ -11,24 +11,13 @@ export class BaseService {
     environment.supabaseUrl,
     environment.supabaseKey
   );
-  isUserExist = false;
 
   constructor(protected snackBar: MatSnackBar) {}
 
-  protected async getUser() {
-    const {
-      data: { session },
-      error,
-    } = await this.supabase.auth.getSession();
-    this.handleAuthError(error, 'Error getting user', { session });
-    this.isUserExist = session ? true : false;
-    return { session, error };
-  }
-
-  protected handleAuthError(
+  protected handleError(
     error: AuthError | PostgrestError | null,
     consoleErrorMessage: string,
-    returnValue: {}
+    returnValue?: {}
   ) {
     if (error) {
       console.error(consoleErrorMessage, error);
@@ -41,7 +30,7 @@ export class BaseService {
   protected openSnackBar(message: string, action: string, panelClass: string) {
     this.snackBar.open(message, action, {
       duration: 3000 * 1,
-      verticalPosition: 'bottom',
+      verticalPosition: 'top',
       horizontalPosition: 'right',
       panelClass: panelClass,
     });

@@ -14,9 +14,12 @@
 >
   <mat-icon fontSet="material-symbols-outlined">shopping_bag</mat-icon>
 </button>
-<button mat-stroked-button>
+<button mat-stroked-button *ngIf="!isUserExist" (click)="goToPage('sign-in')">
   <mat-icon fontSet="material-symbols-outlined">account_circle</mat-icon>
   Sign in
+</button>
+<button mat-stroked-button *ngIf="isUserExist" (click)="goToPage('profile')">
+  🙋‍♂️ {{ sessionUser.name }}
 </button>
 <button
   mat-icon-button

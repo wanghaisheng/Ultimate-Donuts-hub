@@ -32,7 +32,7 @@ export class DonutService extends BaseService {
       query = query.ilike(field, `%${value}%`);
     }
     const { data, error, count } = await query;
-    this.handleAuthError(error, 'Error fetching donuts:', {
+    this.handleError(error, 'Error fetching donuts:', {
       data: [],
       total: 0,
     });

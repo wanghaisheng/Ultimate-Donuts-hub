@@ -14,9 +14,8 @@ import {
 import { CommonModule, NgIf } from '@angular/common';
 import { merge } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
-import { AuthService } from '../../shared/auth.service';
-import { DonutService } from '../../shared/donut.service';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-sign-in-up',
@@ -25,6 +24,7 @@ import { DonutService } from '../../shared/donut.service';
     NgIf,
     CommonModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
@@ -36,16 +36,16 @@ import { DonutService } from '../../shared/donut.service';
   styleUrl: './sign-in-up.component.scss',
 })
 export class SignInUpComponent {
-  sessionUser: { name: string; email: string } = { name: '', email: '' };
   @Input() signUpForm: boolean = true;
   readonly email = new FormControl('', [Validators.required, Validators.email]);
 
   errorMessage = signal('');
 
-  constructor(private auth: AuthService, private donuts: DonutService) {
+  constructor(private authService: AuthService, private router: Router) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
+    this.signUpForm = this.router.url == '/sign-in' ? false : true;
   }
 
   updateErrorMessage() {
@@ -61,49 +61,23 @@ export class SignInUpComponent {
   }
 
   async handleSignUp(form: NgForm) {
-    debugger;
     if (form.valid) {
-      const { data, error } = await this.auth.signUp(
+      await this.authService.signUp(
         this.email.value!,
         form.form.value.password,
         form.form.value.name
       );
-      console.log('data: ', data);
-      console.log('error: ', error);
     } else {
       form.form.markAllAsTouched();
     }
   }
 
-  async getUser() {
-    const { session, error } = await this.auth.getUser();
-    //if(session) // session.user.user_metadata.email
-    // session.user.user_metadata.name
-    this.sessionUser.name = session?.user.user_metadata['name'];
-    this.sessionUser.email = session?.user.user_metadata['email'];
-    console.log('session: ', session);
-    console.log('error: ', error);
-  }
-
-  async signOut() {
-    const { error } = await this.auth.signOut();
-    console.log('error: ', error);
-  }
-
-  async getDonuts() {
-    const { data, error } = await this.donuts.read();
-    console.log('donuts: ', data);
-    console.log('error: ', error);
-  }
-
   async handleSignIn(form: NgForm) {
     if (form.valid) {
-      const { data, error } = await this.auth.signIn(
+      await this.authService.signIn(
         this.email.value!,
         form.form.value.password
       );
-      console.log('data: ', data);
-      console.log('error: ', error);
     } else {
       form.form.markAllAsTouched();
     }
