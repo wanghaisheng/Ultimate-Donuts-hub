@@ -16,6 +16,7 @@ import { merge } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
+import { CartWishlistService } from '../../shared/services/cart-wishlist.service';
 
 @Component({
   selector: 'app-sign-in-up',
@@ -41,7 +42,11 @@ export class SignInUpComponent {
 
   errorMessage = signal('');
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private cartWishlistService: CartWishlistService,
+    private router: Router
+  ) {
     merge(this.email.statusChanges, this.email.valueChanges)
       .pipe(takeUntilDestroyed())
       .subscribe(() => this.updateErrorMessage());
@@ -62,11 +67,18 @@ export class SignInUpComponent {
 
   async handleSignUp(form: NgForm) {
     if (form.valid) {
-      await this.authService.signUp(
+      const { data } = await this.authService.signUp(
         this.email.value!,
         form.form.value.password,
         form.form.value.name
       );
+      if (data.user) {
+        const { error } = await this.cartWishlistService.createUserDonuts(
+          data.user.id,
+          data.user.email!
+        );
+        if (!error) window.location.replace('/profile');
+      }
     } else {
       form.form.markAllAsTouched();
     }

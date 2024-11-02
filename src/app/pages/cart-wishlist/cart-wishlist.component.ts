@@ -31,8 +31,10 @@ export class CartWishlistComponent implements OnInit {
 
   getDonuts() {
     this.cartWishlistService.data$.subscribe((value) => {
-      this.wishlistDonuts = value.wishlistDonuts;
-      this.cartDonuts = value.cartDonuts;
+      this.wishlistDonuts = value.donuts.filter(
+        (donut) => donut.isAddedToWishlist
+      );
+      this.cartDonuts = value.donuts.filter((donut) => donut.isAddedToCart);
     });
   }
 }

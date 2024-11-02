@@ -38,14 +38,9 @@ export class CardComponent implements OnInit {
 
   updateCardState() {
     this.cartWishlistService.data$.subscribe((value) => {
-      const foundInWishlist = value.wishlistDonuts.find(
-        (d: { id: number }) => d.id == this.donut.id
-      );
-      this.donut.isAddedToWishlist = foundInWishlist ? true : false;
-      const foundInCart = value.cartDonuts.find(
-        (d: { id: number }) => d.id == this.donut.id
-      );
-      this.donut.isAddedToCart = foundInCart ? true : false;
+      const donut = value.donuts.find((d) => d.id == this.donut.id);
+      this.donut.isAddedToWishlist = donut && donut.isAddedToWishlist;
+      this.donut.isAddedToCart = donut && donut.isAddedToCart;
       this.cdr.detectChanges();
     });
   }

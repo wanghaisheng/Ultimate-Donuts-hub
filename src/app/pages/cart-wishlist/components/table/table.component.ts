@@ -81,10 +81,8 @@ export class TableComponent implements AfterViewInit, OnChanges {
     await this.cartWishlistService.updateCart(donut);
   }
 
-  addAllToCart() {
-    this.donuts.forEach(async (donut) => {
-      await this.cartWishlistService.updateCart(donut);
-    });
+  async addAllToCart() {
+    await this.cartWishlistService.addAllToCart();
   }
 
   async updateDonutQuantity(donut: Donut, flag: boolean) {

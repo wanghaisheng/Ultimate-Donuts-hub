@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 interface AuthType {
   isUserExist: boolean;
   sessionUser: {
+    user_id: string;
     name: string;
     email: string;
   };
@@ -18,6 +19,7 @@ export class AuthService extends BaseService {
   private data = new BehaviorSubject<AuthType>({
     isUserExist: false,
     sessionUser: {
+      user_id: '',
       name: '',
       email: '',
     },
@@ -38,6 +40,7 @@ export class AuthService extends BaseService {
     this.data.next({
       isUserExist: session ? true : false,
       sessionUser: {
+        user_id: session?.user.id!,
         name: session?.user.user_metadata['name'],
         email: session?.user.user_metadata['email'],
       },
@@ -54,7 +57,6 @@ export class AuthService extends BaseService {
         data: { name },
       },
     });
-    if (data.session) window.location.replace('/profile');
     this.handleError(error, 'Error signing up the user!');
     return { data, error };
   }

@@ -42,8 +42,10 @@ export class CartWishlistComponent {
       this.isWishlistDrawer = activeDrawer.isWishlistDrawer;
     });
     this.cartWishlistService.data$.subscribe((value) => {
-      this.wishlistDonuts = value.wishlistDonuts;
-      this.cartDonuts = value.cartDonuts;
+      this.wishlistDonuts = value.donuts.filter(
+        (donut) => donut.isAddedToWishlist
+      );
+      this.cartDonuts = value.donuts.filter((donut) => donut.isAddedToCart);
     });
   }
 
@@ -58,9 +60,7 @@ export class CartWishlistComponent {
     this.drawerService.toggleDrawer();
   }
 
-  addAllToCart() {
-    this.wishlistDonuts.forEach(async (donut) => {
-      await this.cartWishlistService.updateCart(donut);
-    });
+  async addAllToCart() {
+    await this.cartWishlistService.addAllToCart();
   }
 }
