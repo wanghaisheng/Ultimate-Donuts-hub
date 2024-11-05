@@ -7,6 +7,7 @@ import { CartWishlistComponent } from './pages/cart-wishlist/cart-wishlist.compo
 import { SignInUpComponent } from './pages/sign-in-up/sign-in-up.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { SignInUpGuard, UserProfileGuard } from './shared/guards/auth.guard';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -52,6 +53,11 @@ export const routes: Routes = [
     title: 'Profile',
     component: UserProfileComponent,
     canActivate: [UserProfileGuard],
+  },
+  {
+    path: 'checkout',
+    title: 'Checkout',
+    component: CheckoutComponent,
   },
   { path: '**', component: HomeComponent },
 ];

@@ -25,7 +25,7 @@ export class CartWishlistService extends BaseService {
 
   data$ = this.data.asObservable();
 
-  constructor(private authService: AuthService, snackBar: MatSnackBar) {
+  constructor(snackBar: MatSnackBar, private authService: AuthService) {
     super(snackBar);
     this.setCurrentUser();
   }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthError, createClient, PostgrestError } from '@supabase/supabase-js';
 import { environment } from '../../../environments/environment.development';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { StripeError } from '@stripe/stripe-js';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +16,13 @@ export class BaseService {
   constructor(protected snackBar: MatSnackBar) {}
 
   protected handleError(
-    error: AuthError | PostgrestError | null,
+    error: AuthError | PostgrestError | StripeError | null,
     consoleErrorMessage: string,
     returnValue?: {}
   ) {
     if (error) {
       console.error(consoleErrorMessage, error);
-      this.openSnackBar(error.message, 'Close', 'snackbar-error');
+      this.openSnackBar(error.message!, 'Close', 'snackbar-error');
       return returnValue;
     }
     return;
