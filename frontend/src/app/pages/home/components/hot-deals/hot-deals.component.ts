@@ -32,7 +32,9 @@ export class HotDealsComponent {
       name: 'Cinnamon Bliss',
       description: 'A classic glazed donut with a cinnamon sugar',
       price: 3.5,
-      image: 'assets/images/card-donut-1.png',
+      // image: 'assets/images/card-donut-1.png',
+      image:
+        'https://btsgadhhjuwuupnolpbz.supabase.co/storage/v1/object/public/donuts_images/card-donut-1.png?t=2024-11-07T22%3A56%3A22.368Z',
       isFlavoured: null,
       isAddedToCart: false,
       isAddedToWishlist: false,
@@ -44,7 +46,9 @@ export class HotDealsComponent {
       description:
         'An Oven-baked doughnut, perfectly dipped in a glossy chocolate glaze that melts in your mouth.',
       price: 2.75,
-      image: 'assets/images/card-donut-2.png',
+      // image: 'assets/images/card-donut-2.png',
+      image:
+        'https://btsgadhhjuwuupnolpbz.supabase.co/storage/v1/object/public/donuts_images/card-donut-2.png?t=2024-11-07T22%3A56%3A40.560Z',
       isFlavoured: null,
       isAddedToCart: false,
       isAddedToWishlist: false,
@@ -56,7 +60,9 @@ export class HotDealsComponent {
       description:
         'A fruity donut filled with a fresh berry jam and topped with a tangy glaze',
       price: 2.9,
-      image: 'assets/images/card-donut-3.png',
+      // image: 'assets/images/card-donut-3.png',
+      image:
+        'https://btsgadhhjuwuupnolpbz.supabase.co/storage/v1/object/public/donuts_images/card-donut-3.png?t=2024-11-07T22%3A56%3A58.658Z',
       isFlavoured: null,
       isAddedToCart: false,
       isAddedToWishlist: false,

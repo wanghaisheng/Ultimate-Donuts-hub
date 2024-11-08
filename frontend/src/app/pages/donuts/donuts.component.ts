@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ContainerComponent } from '../../components/container/container.component';
 import { DonutCardComponent } from './components/donut-card/donut-card.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -13,6 +13,10 @@ import { DonutService } from '../../shared/services/donut.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { Donut } from '../../shared/types/donut.model';
+import { ActivatedRoute } from '@angular/router';
+import { PaymentService } from '../../shared/services/payment.service';
+import { DonutDialogComponent } from './components/donut-dialog/donut-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-donuts',
@@ -57,8 +61,14 @@ export class DonutsComponent implements OnInit {
   currentPage = 0;
   pageSize = 10;
   totalItems = 0;
+  sessionDetails: any;
+  readonly dialog = inject(MatDialog);
 
-  constructor(private donutService: DonutService) {}
+  constructor(
+    private donutService: DonutService,
+    private paymentService: PaymentService,
+    private route: ActivatedRoute
+  ) {}
 
   async ngOnInit(): Promise<void> {
     this.loadDonuts();
@@ -66,6 +76,20 @@ export class DonutsComponent implements OnInit {
       filter: 'isFlavoured',
     });
     this.flavouredDonuts = flavouredDonuts;
+
+    this.route.queryParams.subscribe((params) => {
+      const sessionId = params['session_id'];
+      if (sessionId) {
+        this.paymentService.getSessionDetails(sessionId).subscribe((res) => {
+          this.sessionDetails = res;
+          this.openDialog('300ms', '300ms', true);
+        });
+      }
+    });
+
+    this.route.url.subscribe((url) => {
+      if (url[1]?.path === 'cancel') this.openDialog('300ms', '300ms', false);
+    });
   }
 
   async loadDonuts() {
@@ -95,5 +119,21 @@ export class DonutsComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.loadDonuts();
     window.scrollTo(0, 0);
+  }
+
+  openDialog(
+    enterAnimationDuration: string,
+    exitAnimationDuration: string,
+    successPayment: boolean
+  ): void {
+    this.dialog.open(DonutDialogComponent, {
+      data: {
+        paymentSessionDetails: this.sessionDetails,
+        successPayment,
+      },
+      width: '828px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 }

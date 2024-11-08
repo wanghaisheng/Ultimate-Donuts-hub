@@ -50,7 +50,9 @@
       Shipping, taxes, and discounts will be calculated at checkout.
     </p>
     <div class="buttons">
-      <button mat-stroked-button>PROCEED TO CHECKOUT</button>
+      <button mat-stroked-button (click)="proceedToCheckout()">
+        PROCEED TO CHECKOUT
+      </button>
       <button mat-raised-button (click)="navigateToPage('shopping-cart')">
         VIEW CART
       </button>
@@ -58,7 +60,9 @@
   </ng-container>
   <ng-container *ngIf="isWishlistDrawer && wishlistDonuts.length">
     <div class="buttons">
-      <button mat-stroked-button (click)="addAllToCart()">ADD ALL TO CART</button>
+      <button mat-stroked-button (click)="addAllToCart()">
+        ADD ALL TO CART
+      </button>
       <button mat-raised-button (click)="navigateToPage('wishlist')">
         VIEW WISHLIST
       </button>

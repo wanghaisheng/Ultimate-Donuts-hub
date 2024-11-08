@@ -2,3 +2,19 @@
   display: block;
   padding: 1rem;
 }
+
+.paymentSessionDetails {
+  word-wrap: break-word;
+
+  .pinkText {
+    color: var(--clr-bg-rose);
+  }
+}
+
+mat-dialog-actions {
+  padding: 0;
+
+  .mdc-button {
+    background: var(--clr-bg-list-item-active);
+  }
+}

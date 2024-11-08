@@ -9,6 +9,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { Router, RouterModule } from '@angular/router';
 import { CartWishlistService } from '../../shared/services/cart-wishlist.service';
 import { Donut } from '../../shared/types/donut.model';
+import { PaymentService } from '../../shared/services/payment.service';
 
 @Component({
   selector: 'app-cart-wishlist',
@@ -35,6 +36,7 @@ export class CartWishlistComponent {
   constructor(
     private drawerService: DrawerService,
     private cartWishlistService: CartWishlistService,
+    private paymentService: PaymentService,
     private router: Router
   ) {
     this.drawerService.activeDrawer$.subscribe((activeDrawer) => {
@@ -62,5 +64,9 @@ export class CartWishlistComponent {
 
   async addAllToCart() {
     await this.cartWishlistService.addAllToCart();
+  }
+
+  proceedToCheckout() {
+    this.paymentService.createCheckoutSession(this.cartDonuts);
   }
 }

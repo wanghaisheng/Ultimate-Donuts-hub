@@ -2,8 +2,10 @@ import { CommonModule, NgIf } from '@angular/common';
 import {
   AfterViewInit,
   Component,
+  EventEmitter,
   Input,
   OnChanges,
+  Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -24,7 +26,6 @@ import { Donut } from '../../../../shared/types/donut.model';
   imports: [
     CommonModule,
     RouterModule,
-    NgIf,
     MatPaginatorModule,
     MatTableModule,
     MatSortModule,
@@ -40,6 +41,7 @@ export class TableComponent implements AfterViewInit, OnChanges {
   @Input() isCart?: boolean;
   @Input() isWishlist?: boolean;
   @Input() donuts: Donut[] = [];
+  @Output() checkout = new EventEmitter();
 
   displayedColumns: string[] = [];
   dataSource = new MatTableDataSource<Donut>([]);
@@ -87,5 +89,9 @@ export class TableComponent implements AfterViewInit, OnChanges {
 
   async updateDonutQuantity(donut: Donut, flag: boolean) {
     await this.cartWishlistService.updateDonutQuantity(donut, flag);
+  }
+
+  proceedToCheckout() {
+    this.checkout.emit();
   }
 }

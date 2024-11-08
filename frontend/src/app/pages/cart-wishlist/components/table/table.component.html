@@ -25,9 +25,9 @@
         <span>${{ calculateCartTotal().toFixed(2) }}</span>
       </span>
       <span>
-        <a routerLink="/checkout">
-          <button mat-stroked-button *ngIf="isCart">PROCEED TO CHECKOUT</button>
-        </a>
+        <button mat-stroked-button *ngIf="isCart" (click)="proceedToCheckout()">
+          PROCEED TO CHECKOUT
+        </button>
         <button mat-stroked-button *ngIf="isWishlist" (click)="addAllToCart()">
           ADD ALL TO CART
         </button>
@@ -167,3 +167,4 @@
     <button mat-stroked-button *ngIf="isWishlist">START SHOPPING</button>
   </a>
 </div>
+<div id="payment-element"></div>

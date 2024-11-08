@@ -4,6 +4,7 @@ import { TableComponent } from './components/table/table.component';
 import { Router } from '@angular/router';
 import { CartWishlistService } from '../../shared/services/cart-wishlist.service';
 import { Donut } from '../../shared/types/donut.model';
+import { PaymentService } from '../../shared/services/payment.service';
 
 @Component({
   selector: 'app-cart-wishlist',
@@ -20,7 +21,8 @@ export class CartWishlistComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private cartWishlistService: CartWishlistService
+    private cartWishlistService: CartWishlistService,
+    private paymentService: PaymentService
   ) {}
 
   ngOnInit(): void {
@@ -36,5 +38,9 @@ export class CartWishlistComponent implements OnInit {
       );
       this.cartDonuts = value.donuts.filter((donut) => donut.isAddedToCart);
     });
+  }
+
+  createCheckoutSession() {
+    this.paymentService.createCheckoutSession(this.cartDonuts);
   }
 }

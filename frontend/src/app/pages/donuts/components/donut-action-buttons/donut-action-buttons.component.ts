@@ -29,7 +29,7 @@ export class DonutActionButtonsComponent implements OnInit {
     exitAnimationDuration: string
   ): void {
     this.dialog.open(DonutDialogComponent, {
-      data: { donut: this.donut },
+      data: { donut: this.donut, successPayment: undefined },
       width: '828px',
       enterAnimationDuration,
       exitAnimationDuration,

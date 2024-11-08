@@ -1,29 +1,40 @@
 import { Hono } from 'hono';
+import { cors } from 'hono/cors';
 import { serve } from '@hono/node-server';
-import 'dotenv/config';
 import Stripe from 'stripe';
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+import 'dotenv/config';
 
 const app = new Hono();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-app.get('/', (c) => c.text(`Hello Hono on Node.js! ${process.env.STRIPE_PUBLISHABLE_KEY}`));
+app.use('*', cors());
 
-app.post('/checkout', async (c) => {
+app.post('/api/checkout', async (c) => {
   try {
-    const { lineItems } = await c.req.json();
+    const { lineItems, user } = await c.req.json();
     const origin = c.req.header('origin');
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/cancel`,
+      success_url: `${origin}/donuts/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/donuts/cancel`,
+      customer_email: user?.email,
     });
-
-    return c.json({ id: session.id });
+    return c.json({ session });
   } catch (error: any) {
     return c.json({ error: error.message }, 500);
+  }
+});
+
+app.get('/api/get-stripe-session/:session_id', async (c) => {
+  const sessionId = c.req.param('session_id');
+  try {
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+    return c.json({ session });
+  } catch (error) {
+    console.error('Error retrieving session:', error);
+    return c.json({ error: 'Error retrieving session details' }, 500);
   }
 });
 
