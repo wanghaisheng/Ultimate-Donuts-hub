@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 import { Donut } from '../types/donut.model';
 import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
+import { CartWishlistService } from './cart-wishlist.service';
 
 interface PaymentType {
   isUserExist: boolean;
@@ -31,7 +32,8 @@ export class PaymentService extends BaseService {
   constructor(
     private http: HttpClient,
     snackBar: MatSnackBar,
-    private authService: AuthService
+    private authService: AuthService,
+    private cartWishlistService: CartWishlistService
   ) {
     super(snackBar);
     this.setCurrentUser();
@@ -85,6 +87,7 @@ export class PaymentService extends BaseService {
       .pipe(
         map((data: any) => {
           if (data.session.status == 'complete') {
+            this.cartWishlistService.clearCart();
             return {
               customer: data.session.customer_details.email,
               amountReceived: data.session.amount_total / 100,

@@ -203,6 +203,30 @@ export class CartWishlistService extends BaseService {
     }
   }
 
+  async clearCart() {
+    const donuts = await this.readDonuts();
+    const wishlistDonuts = donuts.filter(
+      (donut: Donut) => donut.isAddedToWishlist
+    );
+    const allDonuts = [...wishlistDonuts];
+    if (this.data.value.isUserExist) {
+      const { data, error } = await this.supabase
+        .from('user_donuts')
+        .update({
+          donuts: allDonuts,
+        })
+        .eq('user_id', this.data.value.user_id)
+        .select('*');
+      if (data && data.length) {
+        this.updateDonutsStatus(allDonuts);
+      }
+      if (error) this.handleError(error, error.message);
+    }
+    if (!this.data.value.isUserExist) {
+      await this.saveDonuts(allDonuts);
+    }
+  }
+
   async updateDonutQuantity(donut: Donut, flag: boolean) {
     const newDonut = { ...donut };
     flag ? (newDonut.quantity += 1) : (newDonut.quantity -= 1);

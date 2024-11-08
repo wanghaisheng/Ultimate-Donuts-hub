@@ -13,7 +13,7 @@ import { DonutService } from '../../shared/services/donut.service';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { Donut } from '../../shared/types/donut.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentService } from '../../shared/services/payment.service';
 import { DonutDialogComponent } from './components/donut-dialog/donut-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -67,7 +67,8 @@ export class DonutsComponent implements OnInit {
   constructor(
     private donutService: DonutService,
     private paymentService: PaymentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -83,12 +84,16 @@ export class DonutsComponent implements OnInit {
         this.paymentService.getSessionDetails(sessionId).subscribe((res) => {
           this.sessionDetails = res;
           this.openDialog('300ms', '300ms', true);
+          this.router.navigate(['/donuts']);
         });
       }
     });
 
     this.route.url.subscribe((url) => {
-      if (url[1]?.path === 'cancel') this.openDialog('300ms', '300ms', false);
+      if (url[1]?.path === 'cancel') {
+        this.openDialog('300ms', '300ms', false);
+        this.router.navigate(['/donuts']);
+      }
     });
   }
 
