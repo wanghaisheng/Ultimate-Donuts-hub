@@ -38,4 +38,14 @@ app.get('/api/get-stripe-session/:session_id', async (c) => {
   }
 });
 
+app.post('/api/cancel-order', async (c) => {
+  const { payment_intent } = await c.req.json();
+  try {
+    const refund = await stripe.refunds.create({ payment_intent });
+    return c.json({ refund });
+  } catch (error: any) {
+    return c.json({ error: `Stripe Error: ${error.message}` }, 500);
+  }
+});
+
 serve(app);

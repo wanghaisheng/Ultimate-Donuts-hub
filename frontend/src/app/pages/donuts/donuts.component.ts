@@ -84,7 +84,6 @@ export class DonutsComponent implements OnInit {
         this.paymentService.getSessionDetails(sessionId).subscribe((res) => {
           this.sessionDetails = res;
           this.openDialog('300ms', '300ms', true);
-          this.router.navigate(['/donuts']);
         });
       }
     });
@@ -92,9 +91,10 @@ export class DonutsComponent implements OnInit {
     this.route.url.subscribe((url) => {
       if (url[1]?.path === 'cancel') {
         this.openDialog('300ms', '300ms', false);
-        this.router.navigate(['/donuts']);
       }
     });
+
+    this.router.navigate(['/donuts'], { replaceUrl: true });
   }
 
   async loadDonuts() {

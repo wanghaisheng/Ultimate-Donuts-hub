@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
+import { PaymentService } from '../../shared/services/payment.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,9 +10,16 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrl: './user-profile.component.scss',
 })
 export class UserProfileComponent {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private paymentService: PaymentService
+  ) {}
 
   async handleSignOut() {
     await this.authService.signOut();
+  }
+
+  cancelOrder(order: any) {
+    this.paymentService.cancelOrder(order);
   }
 }

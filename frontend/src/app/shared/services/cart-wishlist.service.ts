@@ -100,7 +100,7 @@ export class CartWishlistService extends BaseService {
     const updatedDonuts = donuts.filter((d: Donut) => d.id !== donut.id);
     await this.saveDonuts(updatedDonuts);
     this.openSnackBar(
-      donut.name + ` has been removed from ${target}!`,
+      '✔ ' + donut.name + ` has been removed from ${target}!`,
       'Close',
       'snackbar-error'
     );
@@ -132,7 +132,7 @@ export class CartWishlistService extends BaseService {
     const updatedDonuts = [...donuts, newDonut];
     await this.saveDonuts(updatedDonuts);
     this.openSnackBar(
-      donut.name + ' has been added to wishlist!',
+      '✔ ' + donut.name + ' has been added to wishlist!',
       'Close',
       'snackbar-success'
     );
@@ -156,7 +156,7 @@ export class CartWishlistService extends BaseService {
     const updatedDonuts = await this.replaceDonut(newDonut);
     await this.saveDonuts(updatedDonuts);
     this.openSnackBar(
-      donut.name + ' has been added to cart!',
+      '✔ ' + donut.name + ' has been added to cart!',
       'Close',
       'snackbar-success'
     );
@@ -186,7 +186,7 @@ export class CartWishlistService extends BaseService {
       if (data && data.length) {
         this.updateDonutsStatus(allDonuts);
         this.openSnackBar(
-          'All donuts have been added to cart!',
+          '✔ All donuts have been added to cart!',
           'Close',
           'snackbar-success'
         );
@@ -196,7 +196,7 @@ export class CartWishlistService extends BaseService {
     if (!this.data.value.isUserExist) {
       await this.saveDonuts(allDonuts);
       this.openSnackBar(
-        'All donuts have been added to cart!',
+        '✔ All donuts have been added to cart!',
         'Close',
         'snackbar-success'
       );
