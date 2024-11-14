@@ -1,12 +1,15 @@
 <app-container>
-  @if (isCart) {
-  <app-table
-    [isCart]="isCart"
-    [donuts]="cartDonuts"
-    (checkout)="createCheckoutSession()"
-  >
-  </app-table>
-  } @if (isWishlist) {
-  <app-table [isWishlist]="isWishlist" [donuts]="wishlistDonuts"></app-table>
-  }
+  <mat-spinner *ngIf="isLoading; else content"></mat-spinner>
+  <ng-template #content>
+    @if (isCart) {
+    <app-table
+      [isCart]="isCart"
+      [donuts]="cartDonuts"
+      (checkout)="createCheckoutSession()"
+    >
+    </app-table>
+    } @if (isWishlist) {
+    <app-table [isWishlist]="isWishlist" [donuts]="wishlistDonuts"></app-table>
+    }
+  </ng-template>
 </app-container>

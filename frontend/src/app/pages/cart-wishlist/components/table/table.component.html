@@ -1,4 +1,4 @@
-<ng-container *ngIf="donuts.length">
+<ng-container *ngIf="donuts && donuts.length">
   <header class="table-header">
     <h2 class="table-title">
       <span>
@@ -65,13 +65,10 @@
         *matHeaderCellDef
         mat-sort-header
         sortActionDescription="Sort by price"
-        class="price-column"
       >
         Price
       </th>
-      <td mat-cell *matCellDef="let element" class="price-column">
-        ${{ element.price }}
-      </td>
+      <td mat-cell *matCellDef="let element">${{ element.price }}</td>
     </ng-container>
 
     <!-- Quantity Column -->
@@ -81,7 +78,6 @@
         *matHeaderCellDef
         mat-sort-header
         sortActionDescription="Sort by quantity"
-        class="quantity-column"
       >
         Quantity
       </th>
@@ -90,7 +86,6 @@
           name="fontStyle"
           aria-label="Font Style"
           [hideSingleSelectionIndicator]="true"
-          class="quantity-column"
         >
           <mat-button-toggle (click)="updateDonutQuantity(element, false)">
             <mat-icon>remove</mat-icon>
@@ -161,10 +156,9 @@
   </mat-paginator>
 </ng-container>
 
-<div class="empty" *ngIf="!donuts.length">
+<div class="empty" *ngIf="!donuts || !donuts.length">
   <h1>No donuts yet!</h1>
   <a routerLink="/donuts">
     <button mat-stroked-button *ngIf="isWishlist">START SHOPPING</button>
   </a>
 </div>
-<div id="payment-element"></div>

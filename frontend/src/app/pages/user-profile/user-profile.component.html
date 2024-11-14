@@ -1,3 +1,11 @@
-<p>user-profile works!</p>
-<button (click)="handleSignOut()">Sign Out</button>
-<button (click)="cancelOrder({})">Cancel</button>
+<app-container>
+  <mat-spinner *ngIf="isLoading; else content"></mat-spinner>
+  <ng-template #content>
+    <app-table
+      [orders]="orders"
+      [user]="user"
+      (cancelOrder)="cancelOrder($event)"
+      (handleSignOut)="handleSignOut()"
+    ></app-table>
+  </ng-template>
+</app-container>

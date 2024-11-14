@@ -32,21 +32,22 @@ export class AuthService extends BaseService {
     this.getUser();
   }
 
-  async getUser() {
+  async getUser(): Promise<AuthType> {
     const {
       data: { session },
       error,
     } = await this.supabase.auth.getSession();
-    this.data.next({
+    const authData = {
       isUserExist: session ? true : false,
       sessionUser: {
         user_id: session?.user.id!,
         name: session?.user.user_metadata['name'],
         email: session?.user.user_metadata['email'],
       },
-    });
+    };
+    this.data.next(authData);
     this.handleError(error, 'Error getting user', { session });
-    return { session, error };
+    return authData;
   }
 
   async signUp(email: string, password: string, name: string) {

@@ -58,5 +58,5 @@ export const routes: Routes = [
     component: UserProfileComponent,
     canActivate: [UserProfileGuard],
   },
-  { path: '**', component: HomeComponent },
+  { path: '**', redirectTo: '' },
 ];

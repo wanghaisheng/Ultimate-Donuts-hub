@@ -5,11 +5,13 @@ import { Router } from '@angular/router';
 import { CartWishlistService } from '../../shared/services/cart-wishlist.service';
 import { Donut } from '../../shared/types/donut.model';
 import { PaymentService } from '../../shared/services/payment.service';
+import { NgIf } from '@angular/common';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-cart-wishlist',
   standalone: true,
-  imports: [ContainerComponent, TableComponent],
+  imports: [NgIf, MatProgressSpinner, ContainerComponent, TableComponent],
   templateUrl: './cart-wishlist.component.html',
   styleUrl: './cart-wishlist.component.scss',
 })
@@ -18,6 +20,7 @@ export class CartWishlistComponent implements OnInit {
   isWishlist = false;
   wishlistDonuts: Donut[] = [];
   cartDonuts: Donut[] = [];
+  isLoading = true;
 
   constructor(
     private router: Router,
@@ -37,6 +40,7 @@ export class CartWishlistComponent implements OnInit {
         (donut) => donut.isAddedToWishlist
       );
       this.cartDonuts = value.donuts.filter((donut) => donut.isAddedToCart);
+      this.isLoading = false;
     });
   }
 

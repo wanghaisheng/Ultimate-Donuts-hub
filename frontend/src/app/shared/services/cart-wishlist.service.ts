@@ -31,11 +31,13 @@ export class CartWishlistService extends BaseService {
   }
 
   async setCurrentUser() {
-    await this.authService.getUser();
     this.authService.data$.subscribe((data) => {
-      this.data.value.isUserExist = data.isUserExist;
-      this.data.value.user_id = data.sessionUser.user_id;
-      this.data.value.email = data.sessionUser.email;
+      this.data.next({
+        ...this.data.value,
+        isUserExist: data.isUserExist,
+        user_id: data.sessionUser.user_id,
+        email: data.sessionUser.email,
+      });
       this.readDonuts();
     });
   }

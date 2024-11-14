@@ -13,6 +13,7 @@ interface PaymentType {
   isUserExist: boolean;
   user_id: string;
   email: string;
+  userOrders: any[];
 }
 
 @Injectable({
@@ -23,6 +24,7 @@ export class PaymentService extends BaseService {
     isUserExist: false,
     user_id: '',
     email: '',
+    userOrders: [],
   });
 
   data$ = this.data.asObservable();
@@ -38,17 +40,14 @@ export class PaymentService extends BaseService {
   }
 
   async setCurrentUser() {
-    await this.authService.getUser();
     this.authService.data$.subscribe(async (data) => {
-      this.data.value.isUserExist = data.isUserExist;
-      this.data.value.user_id = data.sessionUser.user_id;
-      this.data.value.email = data.sessionUser.email;
-      if (data.isUserExist) {
-        const { data: orders } = await this.getOrders();
-        if (orders?.length == 0) {
-          this.createOrders(data.sessionUser.user_id, data.sessionUser.email);
-        }
-      }
+      this.data.next({
+        ...this.data.value,
+        isUserExist: data.isUserExist,
+        user_id: data.sessionUser.user_id,
+        email: data.sessionUser.email,
+      });
+      this.checkUserOrders();
     });
   }
 
@@ -114,6 +113,15 @@ export class PaymentService extends BaseService {
       );
   }
 
+  async checkUserOrders() {
+    if (this.data.value.isUserExist) {
+      const { data: arrayOfUserOrders } = await this.getOrders();
+      if (arrayOfUserOrders?.length == 0) {
+        this.createOrders(this.data.value.user_id, this.data.value.email);
+      }
+    }
+  }
+
   async createOrders(user_id: string, email: string) {
     const { data, error } = await this.supabase
       .from('user_orders')
@@ -132,8 +140,12 @@ export class PaymentService extends BaseService {
     if (this.data.value.isUserExist) {
       const { data, error } = await this.supabase
         .from('user_orders')
-        .select('*');
+        .select('*')
+        .eq('user_id', this.data.value.user_id);
       if (error) this.handleError(error, error.message);
+      if (data) {
+        this.data.next({ ...this.data.value, userOrders: data[0].orders });
+      }
       return { data, error };
     }
     return { data: null, error: null };
@@ -143,23 +155,31 @@ export class PaymentService extends BaseService {
     if (this.data.value.isUserExist) {
       const order = {
         amount: data.session.amount_total / 100,
-        status: data.session.status,
+        status: data.session.status + 'd',
         session_id: data.session.id,
         payment_intent: data.session.payment_intent,
+        created: data.session.created,
+        expires_at: data.session.expires_at,
       };
       await this.saveOrder(order);
     }
   }
 
   async saveOrder(order: any) {
-    const { data: orders } = await this.getOrders();
-    const previousOrders = orders
-      ? orders[0].orders.filter((o: any) => o.session_id !== order.session_id)
-      : [];
+    const { data: ordersData } = await this.getOrders();
+    const orders = ordersData ? ordersData[0].orders : [];
+    const orderIndex = orders.findIndex(
+      (o: any) => o.session_id === order.session_id
+    );
+    if (orderIndex !== -1) {
+      orders[orderIndex] = order;
+    } else {
+      orders.push(order);
+    }
     const { data, error } = await this.supabase
       .from('user_orders')
       .update({
-        orders: [...previousOrders, order],
+        orders,
       })
       .eq('user_id', this.data.value.user_id)
       .select('*');
@@ -179,19 +199,25 @@ export class PaymentService extends BaseService {
             const refundSession = {
               amount: order.amount,
               status:
-                response.session.status == 'succeeded'
+                response.refund.status == 'succeeded'
                   ? 'canceled'
-                  : 'complete',
+                  : 'completed',
               session_id: order.session_id,
               payment_intent: order.payment_intent,
+              created: order.created,
+              canceledAt: response.refund.created,
             };
             const { data, error } = await this.saveOrder(refundSession);
             if (error) this.handleError(error, error.message);
             if (data && data[0].orders.length) {
+              this.data.next({
+                ...this.data.value,
+                userOrders: data[0].orders,
+              });
               this.openSnackBar(
                 '✔ Order canceled and refunded successfully!',
                 'Close',
-                'snackbar-success'
+                'snackbar-error'
               );
             }
           }
