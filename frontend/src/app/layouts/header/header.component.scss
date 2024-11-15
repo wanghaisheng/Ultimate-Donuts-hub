@@ -1,11 +1,11 @@
 :host {
   display: block;
-  width: 100%;
+  width: calc(100% - 8px);
   height: 56px;
   position: fixed;
   top: 0;
   padding: 0.3rem 0;
-  z-index: 99;
+  z-index: 1;
   background-color: var(--clr-bg-green);
   @media (min-width: 600px) {
     height: 64px;

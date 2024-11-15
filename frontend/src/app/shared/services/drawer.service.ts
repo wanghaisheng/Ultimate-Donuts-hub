@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { SmoothScrollService } from './smooth-scroll.service';
 
 interface DrawerType {
   isMobileDrawer: boolean;
@@ -21,18 +22,20 @@ export class DrawerService {
   isOpen$ = this.isOpen.asObservable();
   activeDrawer$ = this.activeDrawer.asObservable();
 
+  constructor(private smoothScrollService: SmoothScrollService) {}
+
   toggleDrawer() {
     this.isOpen.next(!this.isOpen.value);
     if (this.isOpen.value) {
-      document.body.style.overflow = 'hidden';
+      this.smoothScrollService.destroyScroll(true);
     } else {
-      document.body.style.overflow = 'auto';
+      this.smoothScrollService.destroyScroll(false);
     }
   }
 
   closeDrawer() {
     this.isOpen.next(false);
-    document.body.style.overflow = 'auto';
+    this.smoothScrollService.destroyScroll(false);
   }
 
   setActiveDrawer(activeDrawer: string | null) {

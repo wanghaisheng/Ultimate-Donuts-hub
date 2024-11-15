@@ -1,6 +1,16 @@
 <app-header></app-header>
-<main class="main">
-  <app-drawer></app-drawer>
-  <router-outlet />
-</main>
-<app-footer></app-footer>
+<app-drawer></app-drawer>
+<div #scrollContent class="scroll-content">
+  <main class="main">
+    <router-outlet />
+  </main>
+  <app-footer></app-footer>
+</div>
+<button
+  mat-icon-button
+  class="scrollTopButton"
+  [class.show]="showScrollBtn"
+  (click)="scrollToTop()"
+>
+  <mat-icon>keyboard_arrow_up</mat-icon>
+</button>

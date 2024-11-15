@@ -23,6 +23,7 @@
 html,
 body {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -50,6 +51,10 @@ a {
 
 button {
   font-weight: bold !important;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .owl-carousel {
