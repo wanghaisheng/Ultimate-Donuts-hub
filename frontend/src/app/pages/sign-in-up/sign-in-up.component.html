@@ -4,7 +4,13 @@
       <form class="form" #form="ngForm">
         <!-- Name -->
         <div class="form-field-container" *ngIf="signUpForm">
-          <mat-form-field appearance="outline">
+          <mat-form-field
+            appearance="outline"
+            [@fadeInUp]="{
+              value: '',
+              params: { delay: 1 * 250 }
+            }"
+          >
             <mat-label>Name</mat-label>
             <input
               matInput
@@ -30,11 +36,17 @@
         </div>
         <!-- Email -->
         <div class="form-field-container">
-          <mat-form-field appearance="outline">
+          <mat-form-field
+            appearance="outline"
+            [@fadeInUp]="{
+              value: '',
+              params: { delay: (signUpForm ? 2 : 1) * 250 }
+            }"
+          >
             <mat-label>Email</mat-label>
             <input
               matInput
-              placeholder="shaher@ashraf@example.com"
+              placeholder="shaherashraf@example.com"
               [formControl]="email"
               (blur)="updateErrorMessage()"
               required
@@ -47,7 +59,13 @@
         </div>
         <!-- Password -->
         <div class="form-field-container">
-          <mat-form-field appearance="outline">
+          <mat-form-field
+            appearance="outline"
+            [@fadeInUp]="{
+              value: '',
+              params: { delay: (signUpForm ? 3 : 2) * 250 }
+            }"
+          >
             <mat-label>Password</mat-label>
             <input
               matInput
@@ -76,6 +94,10 @@
           [disabled]="form.invalid"
           (click)="handleSignUp(form)"
           *ngIf="signUpForm"
+          [@fadeInUp]="{
+            value: '',
+            params: { delay: 4 * 250 }
+          }"
         >
           Sign Up
         </button>
@@ -85,6 +107,10 @@
           [disabled]="form.invalid"
           (click)="handleSignIn(form)"
           *ngIf="!signUpForm"
+          [@fadeInUp]="{
+            value: '',
+            params: { delay: 3 * 250 }
+          }"
         >
           Sign In
         </button>

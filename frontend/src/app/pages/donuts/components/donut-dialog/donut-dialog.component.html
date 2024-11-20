@@ -4,16 +4,20 @@
 <mat-card appearance="outlined">
   <mat-card-content>
     <div class="paymentSessionDetails">
-      <h1>Payment Successful 🎉</h1>
-      <p>
+      <h1 [@fadeInUp]="{ value: '', params: { delay: 1 * 250 } }">
+        Payment Successful 🎉
+      </h1>
+      <p [@fadeInUp]="{ value: '', params: { delay: 2 * 250 } }">
         Thank you for your purchase,
         <span class="pinkText"> {{ data.paymentSessionDetails.customer }} </span
         >!
       </p>
-      <p>Amount paid: ${{ data.paymentSessionDetails.amountReceived }}</p>
+      <p [@fadeInUp]="{ value: '', params: { delay: 3 * 250 } }">
+        Amount paid: ${{ data.paymentSessionDetails.amountReceived }}
+      </p>
       <p>Transaction ID: {{ data.paymentSessionDetails.transactionId }}</p>
     </div>
-    <mat-dialog-actions>
+    <mat-dialog-actions [@fadeInUp]="{ value: '', params: { delay: 4 * 250 } }">
       <button mat-button (click)="onNoClick()">Continue Shopping</button>
     </mat-dialog-actions>
   </mat-card-content>
@@ -22,13 +26,18 @@
 <mat-card appearance="outlined">
   <mat-card-content>
     <div class="paymentSessionDetails">
-      <h1 class="pinkText">Your Order Has Been Canceled 😒</h1>
-      <p>
+      <h1
+        class="pinkText"
+        [@fadeInUp]="{ value: '', params: { delay: 1 * 250 } }"
+      >
+        Your Order Has Been Canceled 😒
+      </h1>
+      <p [@fadeInUp]="{ value: '', params: { delay: 2 * 250 } }">
         We're sorry to hear that. If you have any questions or need further
         assistance, please feel free to contact us.
       </p>
     </div>
-    <mat-dialog-actions>
+    <mat-dialog-actions [@fadeInUp]="{ value: '', params: { delay: 3 * 250 } }">
       <button mat-button (click)="onNoClick()">Continue Shopping</button>
     </mat-dialog-actions>
   </mat-card-content>

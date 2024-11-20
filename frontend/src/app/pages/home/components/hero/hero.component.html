@@ -1,21 +1,46 @@
 <app-container>
-  <div class="hero-text">
-    <h1 class="hero-text-headline">
+  <div class="hero-text" appInView (isVisible)="onElementVisible()">
+    <h1
+      class="hero-text-headline"
+      [@reveal]="{
+        value: inView ? 'visible' : 'hidden',
+        params: { delay: 1 * 250 }
+      }"
+    >
       Discover Our Delicious<br />
       Donuts Today!
     </h1>
-    <p class="hero-text-desc">
+    <p
+      class="hero-text-desc"
+      [@reveal]="{
+        value: inView ? 'visible' : 'hidden',
+        params: { delay: 2 * 250 }
+      }"
+    >
       Our donuts are perfect for any occasion, whether you are grabbing a quick
       breakfast on the go or ordering a dozen for a special event.
     </p>
     <a routerLink="/donuts">
-      <button mat-raised-button class="hero-text-cta">
+      <button
+        mat-raised-button
+        class="hero-text-cta"
+        [@reveal]="{
+          value: inView ? 'visible' : 'hidden',
+          params: { delay: 3 * 250 }
+        }"
+      >
         Order Now
         <mat-icon fontSet="material-symbols-outlined">local_mall</mat-icon>
       </button>
     </a>
   </div>
-  <div class="hero-image">
+  <div
+    class="hero-image"
+    [@imageReveal]="{
+      value: inView ? 'visible' : 'hidden',
+      params: { delay: 250 }
+    }"
+  >
     <div class="hero-image-container">
       <img
         *ngFor="let image of images"

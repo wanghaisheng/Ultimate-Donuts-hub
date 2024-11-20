@@ -51,14 +51,14 @@
       <app-donut-card
         *ngFor="let donut of donuts; let i = index"
         [donut]="donut"
-        [@fadeIn]="{ value: '', params: { delay: (i + 1) * 300 } }"
+        [@fadeIn]="{ value: '', params: { delay: (i + 1) * 250 } }"
       ></app-donut-card>
     </div>
     <div class="stack" *ngIf="!isGridView">
       <app-donut-full-card
         *ngFor="let donut of donuts; let i = index"
         [donut]="donut"
-        [@fadeIn]="{ value: '', params: { delay: (i + 1) * 300 } }"
+        [@fadeIn]="{ value: '', params: { delay: (i + 1) * 250 } }"
       ></app-donut-full-card>
     </div>
     <footer>
@@ -91,7 +91,7 @@
       <app-donut-flavoured-card
         *ngFor="let donut of flavouredDonuts; let i = index"
         [donut]="donut"
-        [@fadeIn]="{ value: '', params: { delay: (i + 1) * 300 } }"
+        [@fadeIn]="{ value: '', params: { delay: (i + 1) * 250 } }"
       ></app-donut-flavoured-card>
     </div>
   </div>

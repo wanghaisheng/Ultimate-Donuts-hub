@@ -19,6 +19,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { CartWishlistService } from '../../../../shared/services/cart-wishlist.service';
 import { Donut } from '../../../../shared/types/donut.model';
+import { fadeInUp } from '../../../../shared/animations/animations';
 
 @Component({
   selector: 'app-table',
@@ -36,6 +37,7 @@ import { Donut } from '../../../../shared/types/donut.model';
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
+  animations: [fadeInUp],
 })
 export class TableComponent implements AfterViewInit, OnChanges {
   @Input() isCart?: boolean;

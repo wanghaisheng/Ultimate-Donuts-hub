@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ContainerComponent } from '../../../../components/container/container.component';
 import { MatCardModule } from '@angular/material/card';
 import { NgFor } from '@angular/common';
@@ -7,6 +7,8 @@ import { CardComponent } from '../../../../components/card/card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CarouselArrowButtonsComponent } from '../../../../components/carousel-arrow-buttons/carousel-arrow-buttons.component';
+import { fadeInUp } from '../../../../shared/animations/animations';
+import { InViewDirective } from '../../../../shared/directives/in-view.directive';
 
 @Component({
   selector: 'app-hot-deals',
@@ -20,11 +22,16 @@ import { CarouselArrowButtonsComponent } from '../../../../components/carousel-a
     ContainerComponent,
     CardComponent,
     CarouselArrowButtonsComponent,
+    InViewDirective,
   ],
   templateUrl: './hot-deals.component.html',
   styleUrl: './hot-deals.component.scss',
+  animations: [fadeInUp],
 })
 export class HotDealsComponent {
+  inView = false;
+  hasAnimated = false;
+
   donuts = [
     {
       id: 25,
@@ -90,4 +97,14 @@ export class HotDealsComponent {
     },
     nav: false,
   };
+
+  constructor(private cdRef: ChangeDetectorRef) {}
+
+  onElementVisible(): void {
+    if (!this.hasAnimated) {
+      this.inView = true;
+      this.hasAnimated = true;
+      this.cdRef.detectChanges();
+    }
+  }
 }

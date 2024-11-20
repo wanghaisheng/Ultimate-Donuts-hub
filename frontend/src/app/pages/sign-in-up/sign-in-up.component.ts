@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 import { CartWishlistService } from '../../shared/services/cart-wishlist.service';
+import { fadeInUp } from '../../shared/animations/animations';
 
 @Component({
   selector: 'app-sign-in-up',
@@ -35,6 +36,7 @@ import { CartWishlistService } from '../../shared/services/cart-wishlist.service
   ],
   templateUrl: './sign-in-up.component.html',
   styleUrl: './sign-in-up.component.scss',
+  animations: [fadeInUp],
 })
 export class SignInUpComponent {
   @Input() signUpForm: boolean = true;

@@ -70,12 +70,32 @@
 </svg>
 
 <app-container>
-  <div class="content">
-    <p class="content-badge">Get Our Offer</p>
-    <h1 class="content-title">
+  <div class="content" appInView (isVisible)="onElementVisible()">
+    <p
+      class="content-badge"
+      [@fadeInUp]="{
+        value: inView ? 'visible' : 'hidden',
+        params: { delay: 1 * 250 }
+      }"
+    >
+      Get Our Offer
+    </p>
+    <h1
+      class="content-title"
+      [@fadeInUp]="{
+        value: inView ? 'visible' : 'hidden',
+        params: { delay: 2 * 250 }
+      }"
+    >
       Connect with us and get 35% offer to our all products
     </h1>
-    <a routerLink="/contact">
+    <a
+      routerLink="/contact"
+      [@fadeInUp]="{
+        value: inView ? 'visible' : 'hidden',
+        params: { delay: 3 * 250 }
+      }"
+    >
       <button mat-raised-button class="content-cta">
         Get Now
         <mat-icon fontSet="material-symbols-outlined">local_mall</mat-icon>

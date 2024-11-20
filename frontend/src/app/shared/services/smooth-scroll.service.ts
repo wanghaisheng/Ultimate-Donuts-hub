@@ -34,10 +34,6 @@ export class SmoothScrollService {
     },
   };
 
-  scrollToTop(duration?: number) {
-    this.data.value.scrollbar?.scrollTo(0, 0, duration);
-  }
-
   initSmoothScrolling(scrollElement: HTMLElement): void {
     Scrollbar.use(OverscrollPlugin);
     this.data.next({
@@ -62,5 +58,9 @@ export class SmoothScrollService {
     flag
       ? this.data.value.scrollbar?.destroy()
       : this.initSmoothScrolling(document.querySelector('.scroll-content')!);
+  }
+
+  scrollToTop(duration?: number) {
+    this.data.value.scrollbar?.scrollTo(0, 0, duration);
   }
 }

@@ -8,6 +8,7 @@ import { DonutFullCardComponent } from '../donut-full-card/donut-full-card.compo
 import { Donut } from '../../../../shared/types/donut.model';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { fadeInUp } from '../../../../shared/animations/animations';
 
 interface DialogData {
   donut: Donut;
@@ -26,6 +27,7 @@ interface DialogData {
   ],
   templateUrl: './donut-dialog.component.html',
   styleUrl: './donut-dialog.component.scss',
+  animations: [fadeInUp],
 })
 export class DonutDialogComponent {
   readonly dialogRef = inject(MatDialogRef<DonutDialogComponent>);

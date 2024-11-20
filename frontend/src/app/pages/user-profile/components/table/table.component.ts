@@ -16,6 +16,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
+import { fadeInUp } from '../../../../shared/animations/animations';
 
 @Component({
   selector: 'app-table',
@@ -32,6 +33,7 @@ import { RouterModule } from '@angular/router';
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
+  animations: [fadeInUp],
 })
 export class TableComponent implements AfterViewInit, OnChanges {
   @Input() orders: any;

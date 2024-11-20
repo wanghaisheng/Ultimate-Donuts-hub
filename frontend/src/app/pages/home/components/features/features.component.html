@@ -1,3 +1,12 @@
 <app-container>
-  <app-card *ngFor="let card of cards" [donut]="card"></app-card>
+  <app-card
+    *ngFor="let card of cards; let i = index"
+    [donut]="card"
+    appInView
+    (isVisible)="onElementVisible()"
+    [@fadeInUp]="{
+      value: inView ? 'visible' : 'hidden',
+      params: { delay: (i + 1) * 250 }
+    }"
+  ></app-card>
 </app-container>

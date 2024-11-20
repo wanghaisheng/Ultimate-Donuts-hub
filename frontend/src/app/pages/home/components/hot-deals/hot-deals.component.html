@@ -3,13 +3,22 @@
     <h1 class="title">Hot Deals</h1>
     <app-carousel-arrow-buttons [owlCar]="owlCar"></app-carousel-arrow-buttons>
   </header>
-  <owl-carousel-o [options]="customOptions" #owlCar>
-    <ng-container *ngFor="let donut of donuts">
+  <owl-carousel-o
+    [options]="customOptions"
+    #owlCar
+    appInView
+    (isVisible)="onElementVisible()"
+  >
+    <ng-container *ngFor="let donut of donuts; let i = index">
       <ng-template carouselSlide [id]="donut.id.toString()">
         <app-card
           [donut]="donut"
           [showHeader]="true"
           [showFooter]="true"
+          [@fadeInUp]="{
+            value: inView ? 'visible' : 'hidden',
+            params: { delay: (i + 1) * 250 }
+          }"
         ></app-card>
       </ng-template>
     </ng-container>

@@ -1,16 +1,22 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CardComponent } from '../../../../components/card/card.component';
 import { ContainerComponent } from '../../../../components/container/container.component';
-import { NgFor } from '@angular/common';
+import { NgForOf } from '@angular/common';
+import { fadeInUp } from '../../../../shared/animations/animations';
+import { InViewDirective } from '../../../../shared/directives/in-view.directive';
 
 @Component({
   selector: 'app-features',
   standalone: true,
-  imports: [NgFor, CardComponent, ContainerComponent],
+  imports: [NgForOf, CardComponent, ContainerComponent, InViewDirective],
   templateUrl: './features.component.html',
   styleUrl: './features.component.scss',
+  animations: [fadeInUp],
 })
 export class FeaturesComponent {
+  inView = false;
+  hasAnimated = false;
+
   cards = [
     {
       name: 'Fastest Delivery',
@@ -35,4 +41,14 @@ export class FeaturesComponent {
       image: 'assets/images/best-ingredients.svg',
     },
   ];
+
+  constructor(private cdRef: ChangeDetectorRef) {}
+
+  onElementVisible(): void {
+    if (!this.hasAnimated) {
+      this.inView = true;
+      this.hasAnimated = true;
+      this.cdRef.detectChanges();
+    }
+  }
 }

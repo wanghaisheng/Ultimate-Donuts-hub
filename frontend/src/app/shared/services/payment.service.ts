@@ -47,7 +47,7 @@ export class PaymentService extends BaseService {
         user_id: data.sessionUser.user_id,
         email: data.sessionUser.email,
       });
-      this.checkUserOrders();
+      this.getOrders();
     });
   }
 
@@ -113,15 +113,6 @@ export class PaymentService extends BaseService {
       );
   }
 
-  async checkUserOrders() {
-    if (this.data.value.isUserExist) {
-      const { data: arrayOfUserOrders } = await this.getOrders();
-      if (arrayOfUserOrders?.length == 0) {
-        this.createOrders(this.data.value.user_id, this.data.value.email);
-      }
-    }
-  }
-
   async createOrders(user_id: string, email: string) {
     const { data, error } = await this.supabase
       .from('user_orders')
@@ -143,8 +134,10 @@ export class PaymentService extends BaseService {
         .select('*')
         .eq('user_id', this.data.value.user_id);
       if (error) this.handleError(error, error.message);
-      if (data) {
+      if (data?.length) {
         this.data.next({ ...this.data.value, userOrders: data[0].orders });
+      } else {
+        this.createOrders(this.data.value.user_id, this.data.value.email);
       }
       return { data, error };
     }

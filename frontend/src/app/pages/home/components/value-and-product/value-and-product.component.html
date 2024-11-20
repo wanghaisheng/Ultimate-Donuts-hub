@@ -1,20 +1,53 @@
 <app-container [class.reverse]="showList">
   <app-rounded-corner-image
+    [@imageReveal]="{
+      value: inView ? 'visible' : 'hidden',
+      params: { delay: 1 * 250 }
+    }"
     [imgSource]="showList ? list.imgSource : default.imgSource"
   ></app-rounded-corner-image>
-  <div class="content-wrapper">
-    <div class="content">
-      <h1 class="content-title">
+  <div class="content-wrapper" appInView (isVisible)="onElementVisible()">
+    <div class="content" [id]="showList ? 'list' : 'default'">
+      <h1
+        class="content-title"
+        [@reveal]="{
+          value: inView ? 'visible' : 'hidden',
+          params: { delay: 1 * 250 }
+        }"
+      >
         {{ showList ? list.title : default.title }}
       </h1>
-      <p class="content-desc" *ngIf="!showList">{{ default.desc }}</p>
+      <p
+        class="content-desc"
+        *ngIf="!showList"
+        [@reveal]="{
+          value: inView ? 'visible' : 'hidden',
+          params: { delay: 2 * 250 }
+        }"
+      >
+        {{ default.desc }}
+      </p>
       <a routerLink="/about">
-        <button mat-stroked-button class="content-cta" *ngIf="!showList">
+        <button
+          mat-stroked-button
+          class="content-cta"
+          *ngIf="!showList"
+          [@reveal]="{
+            value: inView ? 'visible' : 'hidden',
+            params: { delay: 3 * 250 }
+          }"
+        >
           Read More
         </button>
       </a>
       <mat-list *ngIf="showList">
-        <mat-list-item *ngFor="let item of list.items">
+        <mat-list-item
+          *ngFor="let item of list.items; let i = index"
+          [@reveal]="{
+            value: inView ? 'visible' : 'hidden',
+            params: { delay: (i + 1) * 250 }
+          }"
+        >
           <mat-icon matListItemIcon>check</mat-icon>
           <span>{{ item }}</span>
         </mat-list-item>

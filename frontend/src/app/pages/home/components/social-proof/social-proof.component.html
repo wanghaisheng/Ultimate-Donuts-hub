@@ -1,10 +1,34 @@
 <app-container>
-  <h1 class="title">Donut Lovers Speak Out</h1>
-  <p class="desc">Hear What They Have to Say</p>
+  <h1
+    class="title"
+    [@reveal]="{
+      value: inView ? 'visible' : 'hidden',
+      params: { delay: 1 * 250 }
+    }"
+  >
+    Donut Lovers Speak Out
+  </h1>
+  <p
+    class="desc"
+    appInView
+    (isVisible)="onElementVisible()"
+    [@reveal]="{
+      value: inView ? 'visible' : 'hidden',
+      params: { delay: 2 * 250 }
+    }"
+  >
+    Hear What They Have to Say
+  </p>
   <owl-carousel-o [options]="customOptions" #owlCar>
-    <ng-container *ngFor="let card of cards">
+    <ng-container *ngFor="let card of cards; let i = index">
       <ng-template carouselSlide [id]="card.id">
-        <mat-card appearance="outlined">
+        <mat-card
+          appearance="outlined"
+          [@reveal]="{
+            value: inView ? 'visible' : 'hidden',
+            params: { delay: (i + 1) * 250 }
+          }"
+        >
           <mat-card-header>
             <mat-icon *ngFor="let star of getStars(card.rating).stars">
               star

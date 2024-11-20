@@ -10,13 +10,13 @@ import { CommonModule } from '@angular/common';
 import { DonutFullCardComponent } from './components/donut-full-card/donut-full-card.component';
 import { DonutFlavouredCardComponent } from './components/donut-flavoured-card/donut-flavoured-card.component';
 import { DonutService } from '../../shared/services/donut.service';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { Donut } from '../../shared/types/donut.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaymentService } from '../../shared/services/payment.service';
 import { DonutDialogComponent } from './components/donut-dialog/donut-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { fadeIn } from '../../shared/animations/animations';
 
 @Component({
   selector: 'app-donuts',
@@ -36,23 +36,7 @@ import { MatDialog } from '@angular/material/dialog';
   ],
   templateUrl: './donuts.component.html',
   styleUrl: './donuts.component.scss',
-  animations: [
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0, transform: 'translateY(-20px)' }),
-        animate(
-          '{{ delay }}ms ease-in-out',
-          style({ opacity: 1, transform: 'translateY(0)' })
-        ),
-      ]),
-      transition(':leave', [
-        animate(
-          '300ms ease-in-out',
-          style({ opacity: 0, transform: 'translateY(-20px)' })
-        ),
-      ]),
-    ]),
-  ],
+  animations: [fadeIn],
 })
 export class DonutsComponent implements OnInit {
   isGridView = true;

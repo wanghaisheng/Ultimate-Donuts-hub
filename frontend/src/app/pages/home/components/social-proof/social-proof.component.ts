@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ContainerComponent } from '../../../../components/container/container.component';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgFor, NgIf } from '@angular/common';
 import { CarouselArrowButtonsComponent } from '../../../../components/carousel-arrow-buttons/carousel-arrow-buttons.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { fadeInUp, reveal } from '../../../../shared/animations/animations';
+import { InViewDirective } from '../../../../shared/directives/in-view.directive';
 
 @Component({
   selector: 'app-social-proof',
@@ -17,11 +19,16 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     ContainerComponent,
     CarouselArrowButtonsComponent,
+    InViewDirective,
   ],
   templateUrl: './social-proof.component.html',
   styleUrl: './social-proof.component.scss',
+  animations: [fadeInUp, reveal],
 })
 export class SocialProofComponent {
+  inView = false;
+  hasAnimated = false;
+
   cards = [
     {
       id: '1',
@@ -75,10 +82,20 @@ export class SocialProofComponent {
     nav: false,
   };
 
+  constructor(private cdRef: ChangeDetectorRef) {}
+
   getStars(rating: number) {
     const halfStar = Math.round(rating) > rating;
     const stars: string[] = [];
     stars.length = Math.floor(rating);
     return { halfStar, stars };
+  }
+
+  onElementVisible(): void {
+    if (!this.hasAnimated) {
+      this.inView = true;
+      this.hasAnimated = true;
+      this.cdRef.detectChanges();
+    }
   }
 }
