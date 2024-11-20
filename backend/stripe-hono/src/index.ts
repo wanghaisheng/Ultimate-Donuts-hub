@@ -9,7 +9,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 app.use('*', cors());
 
-app.post('/api/checkout', async (c) => {
+// app.post('/api/checkout', async (c) => {
+app.post('/checkout', async (c) => {
   try {
     const { lineItems, user } = await c.req.json();
     const origin = c.req.header('origin');
@@ -27,7 +28,8 @@ app.post('/api/checkout', async (c) => {
   }
 });
 
-app.get('/api/get-stripe-session/:session_id', async (c) => {
+// app.get('/api/get-stripe-session/:session_id', async (c) => {
+app.get('/get-stripe-session/:session_id', async (c) => {
   const sessionId = c.req.param('session_id');
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
@@ -38,7 +40,8 @@ app.get('/api/get-stripe-session/:session_id', async (c) => {
   }
 });
 
-app.post('/api/cancel-order', async (c) => {
+// app.post('/api/cancel-order', async (c) => {
+app.post('/cancel-order', async (c) => {
   const { payment_intent } = await c.req.json();
   try {
     const refund = await stripe.refunds.create({ payment_intent });
