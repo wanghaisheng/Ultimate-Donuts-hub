@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthError, createClient, PostgrestError } from '@supabase/supabase-js';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { StripeError } from '@stripe/stripe-js';
 

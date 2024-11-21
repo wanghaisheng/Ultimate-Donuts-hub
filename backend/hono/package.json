@@ -2,7 +2,8 @@
   "name": "hono",
   "scripts": {
     "start": "vercel dev",
-    "deploy": "vercel"
+    "deploy": "vercel",
+    "production": "vercel --prod"
   },
   "dependencies": {
     "hono": "^4.6.11",

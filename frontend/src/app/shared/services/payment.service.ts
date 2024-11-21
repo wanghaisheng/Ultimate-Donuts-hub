@@ -5,7 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Donut } from '../types/donut.model';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { CartWishlistService } from './cart-wishlist.service';
 
