@@ -1,5 +1,7 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
+import { handle } from 'hono/vercel';
+// import { handle } from '@hono/node-server/vercel';
 import { serve } from '@hono/node-server';
 import Stripe from 'stripe';
 import 'dotenv/config';
@@ -9,8 +11,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 app.use('*', cors());
 
-// app.post('/api/checkout', async (c) => {
-app.post('/checkout', async (c) => {
+app.post('/api/checkout', async (c) => {
   try {
     const { lineItems, user } = await c.req.json();
     const origin = c.req.header('origin');
@@ -28,8 +29,7 @@ app.post('/checkout', async (c) => {
   }
 });
 
-// app.get('/api/get-stripe-session/:session_id', async (c) => {
-app.get('/get-stripe-session/:session_id', async (c) => {
+app.get('/api/get-stripe-session/:session_id', async (c) => {
   const sessionId = c.req.param('session_id');
   try {
     const session = await stripe.checkout.sessions.retrieve(sessionId);
@@ -40,8 +40,7 @@ app.get('/get-stripe-session/:session_id', async (c) => {
   }
 });
 
-// app.post('/api/cancel-order', async (c) => {
-app.post('/cancel-order', async (c) => {
+app.post('/api/cancel-order', async (c) => {
   const { payment_intent } = await c.req.json();
   try {
     const refund = await stripe.refunds.create({ payment_intent });
@@ -51,4 +50,12 @@ app.post('/cancel-order', async (c) => {
   }
 });
 
-serve(app);
+// serve(app);
+
+export default handle(app);
+
+// {
+//   "version": 2,
+//   "builds": [{ "src": "src/index.ts", "use": "@vercel/node", "config": { "distDir": "dist" } }],
+//   "routes": [{ "src": "/api/(.*)", "dest": "/dist/index.js" }]
+// }
