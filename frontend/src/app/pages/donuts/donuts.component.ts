@@ -17,6 +17,7 @@ import { PaymentService } from '../../shared/services/payment.service';
 import { DonutDialogComponent } from './components/donut-dialog/donut-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { fadeIn } from '../../shared/animations/animations';
+import { SmoothScrollService } from '../../shared/services/smooth-scroll.service';
 
 @Component({
   selector: 'app-donuts',
@@ -51,6 +52,7 @@ export class DonutsComponent implements OnInit {
   constructor(
     private donutService: DonutService,
     private paymentService: PaymentService,
+    private smoothScrollService: SmoothScrollService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -107,7 +109,7 @@ export class DonutsComponent implements OnInit {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
     this.loadDonuts();
-    window.scrollTo(0, 0);
+    this.smoothScrollService.scrollToTop(200);
   }
 
   openDialog(
