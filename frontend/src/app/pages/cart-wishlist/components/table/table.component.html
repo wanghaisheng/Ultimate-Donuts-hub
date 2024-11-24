@@ -157,12 +157,10 @@
 </ng-container>
 
 <div class="empty" *ngIf="!donuts || !donuts.length">
-  <h1 [@fadeInUp]="{ value: '', params: { delay: 1 * 250 } }">
-    No donuts yet!
-  </h1>
+  <h1 [@fadeInUp]="{ value: '', params: { delay: 500 } }">No donuts yet!</h1>
   <a
     routerLink="/donuts"
-    [@fadeInUp]="{ value: '', params: { delay: 2 * 250 } }"
+    [@fadeInUp]="{ value: '', params: { delay: 1 * 150 + 500 } }"
   >
     <button mat-stroked-button>START SHOPPING</button>
   </a>

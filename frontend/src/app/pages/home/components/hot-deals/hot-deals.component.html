@@ -17,7 +17,7 @@
           [showFooter]="true"
           [@fadeInUp]="{
             value: inView ? 'visible' : 'hidden',
-            params: { delay: (i + 1) * 250 }
+            params: { delay: i * 150 + 500 }
           }"
         ></app-card>
       </ng-template>

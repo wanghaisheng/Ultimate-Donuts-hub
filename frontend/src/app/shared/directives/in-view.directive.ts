@@ -27,7 +27,7 @@ export class InViewDirective implements OnInit, OnDestroy {
           }
         });
       },
-      { rootMargin: '0px', threshold: 0.75 }
+      { rootMargin: '0px', threshold: 0.5 }
     );
 
     this.observer.observe(this.el.nativeElement);

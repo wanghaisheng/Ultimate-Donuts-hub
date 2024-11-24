@@ -4,7 +4,7 @@
       class="hero-text-headline"
       [@reveal]="{
         value: inView ? 'visible' : 'hidden',
-        params: { delay: 1 * 250 }
+        params: { delay: 500 }
       }"
     >
       Discover Our Delicious<br />
@@ -14,7 +14,7 @@
       class="hero-text-desc"
       [@reveal]="{
         value: inView ? 'visible' : 'hidden',
-        params: { delay: 2 * 250 }
+        params: { delay: 1 * 150 + 500 }
       }"
     >
       Our donuts are perfect for any occasion, whether you are grabbing a quick
@@ -26,7 +26,7 @@
         class="hero-text-cta"
         [@reveal]="{
           value: inView ? 'visible' : 'hidden',
-          params: { delay: 3 * 250 }
+          params: { delay: 2 * 150 + 500 }
         }"
       >
         Order Now
@@ -38,7 +38,7 @@
     class="hero-image"
     [@imageReveal]="{
       value: inView ? 'visible' : 'hidden',
-      params: { delay: 250 }
+      params: { delay: 500 }
     }"
   >
     <div class="hero-image-container">

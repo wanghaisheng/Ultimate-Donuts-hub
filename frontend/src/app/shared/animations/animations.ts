@@ -76,13 +76,13 @@ export const fadeIn = trigger('fadeIn', [
   transition(':enter', [
     style({ opacity: 0, transform: 'translateY(-20px)' }),
     animate(
-      '{{ delay }}ms ease-in-out',
+      '{{ delay }}ms ease-out',
       style({ opacity: 1, transform: 'translateY(0)' })
     ),
   ]),
   transition(':leave', [
     animate(
-      '300ms ease-in-out',
+      '300ms ease-out',
       style({ opacity: 0, transform: 'translateY(-20px)' })
     ),
   ]),

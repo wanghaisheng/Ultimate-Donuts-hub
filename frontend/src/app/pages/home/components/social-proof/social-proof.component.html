@@ -3,7 +3,7 @@
     class="title"
     [@reveal]="{
       value: inView ? 'visible' : 'hidden',
-      params: { delay: 1 * 250 }
+      params: { delay: 500 }
     }"
   >
     Donut Lovers Speak Out
@@ -14,7 +14,7 @@
     (isVisible)="onElementVisible()"
     [@reveal]="{
       value: inView ? 'visible' : 'hidden',
-      params: { delay: 2 * 250 }
+      params: { delay: 1 * 150 + 500 }
     }"
   >
     Hear What They Have to Say
@@ -26,7 +26,7 @@
           appearance="outlined"
           [@reveal]="{
             value: inView ? 'visible' : 'hidden',
-            params: { delay: (i + 1) * 250 }
+            params: { delay: i * 150 + 500 }
           }"
         >
           <mat-card-header>

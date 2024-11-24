@@ -1,18 +1,20 @@
 <app-container [class.reverse]="showList">
   <app-rounded-corner-image
+    appInView
+    (isVisible)="onElementVisible()"
     [@imageReveal]="{
       value: inView ? 'visible' : 'hidden',
-      params: { delay: 1 * 250 }
+      params: { delay: 500 }
     }"
     [imgSource]="showList ? list.imgSource : default.imgSource"
   ></app-rounded-corner-image>
-  <div class="content-wrapper" appInView (isVisible)="onElementVisible()">
+  <div class="content-wrapper">
     <div class="content" [id]="showList ? 'list' : 'default'">
       <h1
         class="content-title"
         [@reveal]="{
           value: inView ? 'visible' : 'hidden',
-          params: { delay: 1 * 250 }
+          params: { delay: 1 * 150 + 500 }
         }"
       >
         {{ showList ? list.title : default.title }}
@@ -22,7 +24,7 @@
         *ngIf="!showList"
         [@reveal]="{
           value: inView ? 'visible' : 'hidden',
-          params: { delay: 2 * 250 }
+          params: { delay: 2 * 150 + 500 }
         }"
       >
         {{ default.desc }}
@@ -34,7 +36,7 @@
           *ngIf="!showList"
           [@reveal]="{
             value: inView ? 'visible' : 'hidden',
-            params: { delay: 3 * 250 }
+            params: { delay: 3 * 150 + 500 }
           }"
         >
           Read More
@@ -45,7 +47,7 @@
           *ngFor="let item of list.items; let i = index"
           [@reveal]="{
             value: inView ? 'visible' : 'hidden',
-            params: { delay: (i + 1) * 250 }
+            params: { delay: i * 150 + 500 }
           }"
         >
           <mat-icon matListItemIcon>check</mat-icon>

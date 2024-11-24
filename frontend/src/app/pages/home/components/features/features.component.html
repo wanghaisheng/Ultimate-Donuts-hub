@@ -6,7 +6,7 @@
     (isVisible)="onElementVisible()"
     [@fadeInUp]="{
       value: inView ? 'visible' : 'hidden',
-      params: { delay: (i + 1) * 250 }
+      params: { delay: i * 200 + 500 }
     }"
   ></app-card>
 </app-container>

@@ -8,7 +8,7 @@
             appearance="outline"
             [@fadeInUp]="{
               value: '',
-              params: { delay: 1 * 250 }
+              params: { delay: 500 }
             }"
           >
             <mat-label>Name</mat-label>
@@ -40,7 +40,7 @@
             appearance="outline"
             [@fadeInUp]="{
               value: '',
-              params: { delay: (signUpForm ? 2 : 1) * 250 }
+              params: { delay: (signUpForm ? 1 * 150 : 0 * 150) + 500 }
             }"
           >
             <mat-label>Email</mat-label>
@@ -63,7 +63,7 @@
             appearance="outline"
             [@fadeInUp]="{
               value: '',
-              params: { delay: (signUpForm ? 3 : 2) * 250 }
+              params: { delay: (signUpForm ? 2 * 150 : 1 * 150) + 500 }
             }"
           >
             <mat-label>Password</mat-label>
@@ -96,7 +96,7 @@
           *ngIf="signUpForm"
           [@fadeInUp]="{
             value: '',
-            params: { delay: 4 * 250 }
+            params: { delay: 3 * 150 + 500 }
           }"
         >
           Sign Up
@@ -109,7 +109,7 @@
           *ngIf="!signUpForm"
           [@fadeInUp]="{
             value: '',
-            params: { delay: 3 * 250 }
+            params: { delay: 2 * 150 + 500 }
           }"
         >
           Sign In

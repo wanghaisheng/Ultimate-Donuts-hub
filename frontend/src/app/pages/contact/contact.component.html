@@ -2,24 +2,24 @@
   <div class="content">
     <p
       class="content-question"
-      [@reveal]="{ value: '', params: { delay: 1 * 250 } }"
+      [@reveal]="{ value: '', params: { delay: 500 } }"
     >
       How can we help you?
     </p>
     <h1
       class="content-title"
-      [@reveal]="{ value: '', params: { delay: 2 * 250 } }"
+      [@reveal]="{ value: '', params: { delay: 1 * 150 + 500 } }"
     >
       Contact Us
     </h1>
     <p
       class="content-text"
-      [@reveal]="{ value: '', params: { delay: 3 * 250 } }"
+      [@reveal]="{ value: '', params: { delay: 2 * 150 + 500 } }"
     >
       We're here to help and answer any questions you might have. We look
       forward to hearing from you!
     </p>
-    <mat-list [@reveal]="{ value: '', params: { delay: 4 * 250 } }">
+    <mat-list [@reveal]="{ value: '', params: { delay: 3 * 150 + 500 } }">
       <mat-list-item>
         <mat-icon matListItemIcon>location_on</mat-icon>
         <span>500 Al Tahrir St, Dokki, GZ 94158.</span>
@@ -37,6 +37,6 @@
   <img
     src="assets/images/contact-us.jpg"
     class="image"
-    [@imageReveal]="{ value: '', params: { delay: 250 } }"
+    [@imageReveal]="{ value: '', params: { delay: 500 } }"
   />
 </app-container>

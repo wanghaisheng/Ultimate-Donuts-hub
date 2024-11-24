@@ -1,14 +1,11 @@
 <app-container>
   <div class="content">
-    <h1
-      class="content-title"
-      [@reveal]="{ value: '', params: { delay: 1 * 250 } }"
-    >
+    <h1 class="content-title" [@reveal]="{ value: '', params: { delay: 500 } }">
       Our Story
     </h1>
     <p
       class="content-text-1"
-      [@reveal]="{ value: '', params: { delay: 2 * 250 } }"
+      [@reveal]="{ value: '', params: { delay: 1 * 150 + 500 } }"
     >
       I'm a paragraph. Click here to add your own text and edit me. It's easy.
       Just click "Edit Text” or double click me to add your own content and make
@@ -18,7 +15,7 @@
     </p>
     <p
       class="content-text-2"
-      [@reveal]="{ value: '', params: { delay: 3 * 250 } }"
+      [@reveal]="{ value: '', params: { delay: 2 * 150 + 500 } }"
     >
       This is a great space to write a long text about your company and your
       services. You can use this space to go into a little more detail about
@@ -31,6 +28,6 @@
   <img
     src="assets/images/about-us.jpg"
     class="image"
-    [@imageReveal]="{ value: '', params: { delay: 250 } }"
+    [@imageReveal]="{ value: '', params: { delay: 500 } }"
   />
 </app-container>
